@@ -12,14 +12,16 @@ package projet.gestion.du.stocks.Classe;
 public class Fournisseurs {
     //Propriété de la classe fournisseurs
     private int id;
-    private String nomFounrisseur;
+    private String nomFournisseur;
+    private int nombreCommander;
     private int nombreDisponible;
     private int totalStocks;
     
     //Constructeur
-    public Fournisseurs(int id, String nomFounrisseur, int nombreDisponible, int totalStocks) {
+    public Fournisseurs(int id, String nomFournisseur, int nombreCommander, int nombreDisponible, int totalStocks) {
         this.id = id;
-        this.nomFounrisseur = nomFounrisseur;
+        this.nomFournisseur = nomFournisseur;
+        this.nombreCommander = nombreCommander;
         this.nombreDisponible = nombreDisponible;
         this.totalStocks = totalStocks;
     }
@@ -33,12 +35,20 @@ public class Fournisseurs {
         this.id = id;
     }
 
-    public String getNomFounrisseur() {
-        return nomFounrisseur;
+    public String getNomFournisseur() {
+        return nomFournisseur;
     }
 
-    public void setNomFounrisseur(String nomFounrisseur) {
-        this.nomFounrisseur = nomFounrisseur;
+    public void setNomFournisseur(String nomFournisseur) {
+        this.nomFournisseur = nomFournisseur;
+    }
+
+    public int getNombreCommander() {
+        return nombreCommander;
+    }
+
+    public void setNombreCommander(int nombreCommander) {
+        this.nombreCommander = nombreCommander;
     }
 
     public int getNombreDisponible() {

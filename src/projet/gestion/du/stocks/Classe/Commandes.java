@@ -13,52 +13,54 @@ import java.util.Date;
  */
 public class Commandes {
     //Propriété de la classe Commandes
-    private Clients client;
-    private Vaccins vaccin;
-    private Fournisseurs fournisseur;
-    private Date dateHeureCommande;
+    private int id;
+    private String client;
+    private String vaccin;
+    private String fournisseur;
     private int nombreVaccinCommander;
+    private boolean CommandeValider;
     
     //Constructeur
-    public Commandes(Clients client, Vaccins vaccin, Fournisseurs fournisseur, Date dateHeureCommande, int nombreVaccinCommander) {
+    public Commandes(int id, String client, String vaccin, String fournisseur, int nombreVaccinCommander, boolean CommandeValider) {
+        this.id = id;
         this.client = client;
         this.vaccin = vaccin;
         this.fournisseur = fournisseur;
-        this.dateHeureCommande = dateHeureCommande;
         this.nombreVaccinCommander = nombreVaccinCommander;
+        this.CommandeValider = CommandeValider;
     }
     
     //Méthodes
-    public Clients getClient() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public String getClient() {
         return client;
     }
 
-    public void setClient(Clients client) {
+    public void setClient(String client) {
         this.client = client;
     }
 
-    public Vaccins getVaccin() {
+    public String getVaccin() {
         return vaccin;
     }
 
-    public void setVaccin(Vaccins vaccin) {
+    public void setVaccin(String vaccin) {
         this.vaccin = vaccin;
     }
 
-    public Fournisseurs getFournisseur() {
+    public String getFournisseur() {
         return fournisseur;
     }
 
-    public void setFournisseur(Fournisseurs fournisseur) {
+    public void setFournisseur(String fournisseur) {
         this.fournisseur = fournisseur;
-    }
-
-    public Date getDateHeureCommande() {
-        return dateHeureCommande;
-    }
-
-    public void setDateHeureCommande(Date dateHeureCommande) {
-        this.dateHeureCommande = dateHeureCommande;
     }
 
     public int getNombreVaccinCommander() {
@@ -67,5 +69,13 @@ public class Commandes {
 
     public void setNombreVaccinCommander(int nombreVaccinCommander) {
         this.nombreVaccinCommander = nombreVaccinCommander;
+    }
+
+    public boolean isCommandeValider() {
+        return CommandeValider;
+    }
+
+    public void setCommandeValider(boolean CommandeValider) {
+        this.CommandeValider = CommandeValider;
     }
 }

@@ -39,9 +39,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jButton6" min="-2" pref="214" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Component id="jButton7" min="-2" pref="196" max="-2" attributes="0"/>
+                      <Component id="jButtonValidate" min="-2" pref="196" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton8" min="-2" pref="226" max="-2" attributes="0"/>
+                      <Component id="jButtonAnnuler" min="-2" pref="226" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -68,8 +68,8 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton6" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="jButton7" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="jButton8" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                  <Component id="jButtonValidate" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                  <Component id="jButtonAnnuler" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -92,15 +92,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable4">
+        <Component class="javax.swing.JTable" name="jTableVaccins">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="6">
-                <Column editable="true" title="Type de vaccin" type="java.lang.String"/>
-                <Column editable="true" title="Nombre commad&#xe9;s" type="java.lang.Integer"/>
-                <Column editable="true" title="Nombre disponible" type="java.lang.Integer"/>
-                <Column editable="true" title="Total en stock" type="java.lang.Integer"/>
-              </Table>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Type de vaccin&quot;, &quot;Nombre commad&#xe9;s&quot;, &quot;Nombre disponible&quot;, &quot;Total en stock&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;    public boolean isCellEditable(int row, int column){return false;}&#xa;}" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
@@ -157,22 +152,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable5">
+        <Component class="javax.swing.JTable" name="jTableFournisseurs">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="6">
-                <Column editable="true" title="Nom" type="java.lang.String">
-                  <Data value=""/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="Nombre command&#xe9;s" type="java.lang.Integer"/>
-                <Column editable="true" title="Nombre disponible" type="java.lang.Integer"/>
-                <Column editable="true" title="Total en stock" type="java.lang.Integer"/>
-              </Table>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Nom&quot;, &quot;Nombre command&#xe9;s&quot;, &quot;Nombre disponible&quot;, &quot;Total en stock&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;    public boolean isCellEditable(int row, int column){return false;}&#xa;}" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
@@ -221,16 +204,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable6">
+        <Component class="javax.swing.JTable" name="jTableCommandes">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="6">
-                <Column editable="true" title="Id" type="java.lang.Integer"/>
-                <Column editable="true" title="Nom du client" type="java.lang.String"/>
-                <Column editable="true" title="Fournisseur" type="java.lang.String"/>
-                <Column editable="true" title="Type de vaccin" type="java.lang.String"/>
-                <Column editable="true" title="Nombre command&#xe9;s" type="java.lang.Integer"/>
-              </Table>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Id&quot;, &quot;Nom du client&quot;, &quot;Fournisseur&quot;, &quot;Type de vaccin&quot;, &quot;Nombre command&#xe9;s&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;    public boolean isCellEditable(int row, int column){return false;}&#xa;}" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
@@ -265,6 +242,10 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableCommandesMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableCommandesMousePressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -272,18 +253,23 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ajouter une commande"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton7">
+    <Component class="javax.swing.JButton" name="jButtonValidate">
       <Properties>
         <Property name="text" type="java.lang.String" value="Valider la commande"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton8">
+    <Component class="javax.swing.JButton" name="jButtonAnnuler">
       <Properties>
         <Property name="text" type="java.lang.String" value="Annuler la commande"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAnnulerActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -5,6 +5,15 @@
  */
 package projet.gestion.du.stocks.design;
 
+import javax.swing.JDialog;
+import javax.swing.table.DefaultTableModel;
+import projet.gestion.du.stocks.Classe.Commandes;
+import projet.gestion.du.stocks.Classe.Fournisseurs;
+import projet.gestion.du.stocks.Classe.Vaccins;
+import projet.gestion.du.stocks.dao.CommandesDAO;
+import projet.gestion.du.stocks.dao.FournisseursDAO;
+import projet.gestion.du.stocks.dao.VaccinsDAO;
+
 /**
  *
  * @author Kalic
@@ -16,6 +25,8 @@ public class stockFenetre extends javax.swing.JFrame {
      */
     public stockFenetre() {
         initComponents();
+        
+        refreshTable();
     }
 
     /**
@@ -29,17 +40,17 @@ public class stockFenetre extends javax.swing.JFrame {
 
         jLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jTableVaccins = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        jTableFournisseurs = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        jTableCommandes = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jButtonValidate = new javax.swing.JButton();
+        jButtonAnnuler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,14 +58,9 @@ public class stockFenetre extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Stock de vaccin contre le Covid-19");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jTableVaccins.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Type de vaccin", "Nombre commadés", "Nombre disponible", "Total en stock"
@@ -67,8 +73,9 @@ public class stockFenetre extends javax.swing.JFrame {
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+            public boolean isCellEditable(int row, int column){return false;}
         });
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(jTableVaccins);
 
         jButton5.setText("Ajouter un stock");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -81,14 +88,9 @@ public class stockFenetre extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Fournisseurs");
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        jTableFournisseurs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nom", "Nombre commandés", "Nombre disponible", "Total en stock"
@@ -101,21 +103,17 @@ public class stockFenetre extends javax.swing.JFrame {
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+            public boolean isCellEditable(int row, int column){return false;}
         });
-        jScrollPane5.setViewportView(jTable5);
+        jScrollPane5.setViewportView(jTableFournisseurs);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Commandes");
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCommandes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Id", "Nom du client", "Fournisseur", "Type de vaccin", "Nombre commandés"
@@ -128,17 +126,33 @@ public class stockFenetre extends javax.swing.JFrame {
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+            public boolean isCellEditable(int row, int column){return false;}
         });
-        jScrollPane6.setViewportView(jTable6);
+        jTableCommandes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCommandesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTableCommandesMousePressed(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTableCommandes);
 
         jButton6.setText("Ajouter une commande");
-
-        jButton7.setText("Valider la commande");
-
-        jButton8.setText("Annuler la commande");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButtonValidate.setText("Valider la commande");
+        jButtonValidate.setEnabled(false);
+
+        jButtonAnnuler.setText("Annuler la commande");
+        jButtonAnnuler.setEnabled(false);
+        jButtonAnnuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnnulerActionPerformed(evt);
             }
         });
 
@@ -161,9 +175,9 @@ public class stockFenetre extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonAnnuler, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -186,22 +200,42 @@ public class stockFenetre extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAnnuler, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jButtonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnulerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jButtonAnnulerActionPerformed
 
+    @SuppressWarnings("empty-statement")
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ajoutStockFenetre jfrm2= new ajoutStockFenetre();
+        
+        JDialog jfrm2= new ajoutStockFenetre(this, rootPaneCheckingEnabled);
+        jfrm2.setModal(true);
+        jfrm2.setVisible(true);
+        jfrm2.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        
+        refreshTable();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        ajoutCommandeFenetre jfrm2= new ajoutCommandeFenetre();
         jfrm2.setVisible(true);
         jfrm2.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTableCommandesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCommandesMouseClicked
+        jButtonValidate.setEnabled(true);
+        jButtonAnnuler.setEnabled(true);  
+    }//GEN-LAST:event_jTableCommandesMouseClicked
+
+    private void jTableCommandesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCommandesMousePressed
+
+    }//GEN-LAST:event_jTableCommandesMousePressed
 
     /**
      * @param args the command line arguments
@@ -219,41 +253,65 @@ public class stockFenetre extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(stockFenetre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(stockFenetre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(stockFenetre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(stockFenetre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new stockFenetre().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new stockFenetre().setVisible(true);
         });
     }
 
+    private void refreshTable(){
+        // Mise a jour des données
+        DefaultTableModel model = (DefaultTableModel) jTableCommandes.getModel();
+        model.setRowCount(0);
+        
+        for (Commandes commande : CommandesDAO.getListeCommandes()) {
+            Object[] row = { commande.getId(), commande.getClient(), commande.getFournisseur(), commande.getVaccin(),commande.getNombreVaccinCommander()};
+            model.addRow(row);
+        }
+        
+        model = (DefaultTableModel) jTableFournisseurs.getModel();
+        model.setRowCount(0);
+        
+        for (Fournisseurs fournisseur : FournisseursDAO.getListeFounisseurs()) {
+            Object[] row = { fournisseur.getNomFournisseur(), fournisseur.getNombreCommander(), fournisseur.getNombreDisponible(), fournisseur.getTotalStocks() };
+            model.addRow(row);
+        }
+        
+        model = (DefaultTableModel) jTableVaccins.getModel();
+        model.setRowCount(0);
+        
+        for (Vaccins vaccin : VaccinsDAO.getListeVaccins()) {
+            Object[] row = { vaccin.getTypeVaccin(), vaccin.getNombreCommander(), vaccin.getNombreDisponible(), vaccin.getTotalStocks() };
+            model.addRow(row);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButtonAnnuler;
+    private javax.swing.JButton jButtonValidate;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTableCommandes;
+    private javax.swing.JTable jTableFournisseurs;
+    private javax.swing.JTable jTableVaccins;
     // End of variables declaration//GEN-END:variables
 }

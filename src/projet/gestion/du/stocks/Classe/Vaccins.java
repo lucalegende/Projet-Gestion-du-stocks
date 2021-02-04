@@ -13,13 +13,15 @@ public class Vaccins {
     //Propriété de la classe vaccins
     private int id;
     private String typeVaccin;
+    private int nombreCommander;
     private int nombreDisponible;
     private int totalStocks;
 
     //Constructeur
-    public Vaccins(int id, String typeVaccin, int nombreDisponible, int totalStocks) {
+    public Vaccins(int id, String typeVaccin, int nombreCommander, int nombreDisponible, int totalStocks) {
         this.id = id;
         this.typeVaccin = typeVaccin;
+        this.nombreCommander = nombreCommander;
         this.nombreDisponible = nombreDisponible;
         this.totalStocks = totalStocks;
     }
@@ -39,6 +41,14 @@ public class Vaccins {
 
     public void setTypeVaccin(String typeVaccin) {
         this.typeVaccin = typeVaccin;
+    }
+
+    public int getNombreCommander() {
+        return nombreCommander;
+    }
+
+    public void setNombreCommander(int nombreCommander) {
+        this.nombreCommander = nombreCommander;
     }
 
     public int getNombreDisponible() {
