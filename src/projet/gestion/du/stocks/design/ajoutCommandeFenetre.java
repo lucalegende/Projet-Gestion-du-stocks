@@ -6,6 +6,8 @@
 package projet.gestion.du.stocks.design;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import projet.gestion.du.stocks.dao.CommandesDAO;
@@ -20,18 +22,19 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
 
     /**
      * Créer une nouvelle fenêtre ajoutCommandeFenêtre
+     *
      * @param parent La fenêtre parent
      * @param modal Le model de la fênetre
      */
     public ajoutCommandeFenetre(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         //Chargement des vaccins de la base de données dans l'applications
         VaccinsDAO.getListeVaccins().forEach(vaccin -> {
             TypeVaccins.addItem(vaccin.getTypeVaccin());
         });
-        
+
         FournisseursDAO.getListeFounisseurs().forEach(fournisseur -> {
             NomFournisseur.addItem(fournisseur.getNomFournisseur());
         });
@@ -136,23 +139,26 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Méthodes permettant d'ajouter une commande lors du click sur le boutton ok
-     * @param evt 
+     * Méthodes permettant d'ajouter une commande lors du click sur le boutton
+     * ok
+     *
+     * @param evt
      */
     private void AjoutCommande(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutCommande
         //Vérification label sont bien remplie et avec les bonnes données
-        String oublie = ""; int label = 0;
-        
+        String oublie = "";
+        int label = 0;
+
         //Vérification label sont bien remplie et avec les bonnes données
-        if(TypeVaccins.getSelectedItem() == null || TypeVaccins.getSelectedItem().toString().isBlank()){
+        if (TypeVaccins.getSelectedItem() == null || TypeVaccins.getSelectedItem().toString().isBlank()) {
             oublie += "Type de vaccin, ";
             label++;
         }
-        if(NomFournisseur.getSelectedItem() == null || NomFournisseur.getSelectedItem().toString().isBlank()) {
+        if (NomFournisseur.getSelectedItem() == null || NomFournisseur.getSelectedItem().toString().isBlank()) {
             oublie += "Nom du fournisseur, ";
             label++;
         }
-        if (NomClient.getText().isBlank()){
+        if (NomClient.getText().isBlank()) {
             oublie += "Nom du client, ";
             label++;
         }
@@ -160,27 +166,40 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
             oublie += "quantité ";
             label++;
         }
-        
+
         if (!oublie.isEmpty() && label == 1) {
-            JOptionPane.showMessageDialog(null, oublie+" est incorrect");
-        } else if (!oublie.isEmpty() && label > 1){
-            JOptionPane.showMessageDialog(null, oublie+" sont incorrect");
+            JOptionPane.showMessageDialog(null, oublie + " est incorrect");
+        } else if (!oublie.isEmpty() && label > 1) {
+            JOptionPane.showMessageDialog(null, oublie + " sont incorrect");
         } else {
+            int nombre = -1;
             try {
-                //Ajoute la quantité
                 String typeVaccin = TypeVaccins.getSelectedItem().toString();
                 String nomFournisseur = NomFournisseur.getSelectedItem().toString();
-                String nomClient = NomClient.getText();
-                int quantiter = Integer.valueOf(Quantiter.getText());
-
-                CommandesDAO.AjouterUneCommande(typeVaccin, nomFournisseur, nomClient, quantiter);
-
-                JOptionPane.showMessageDialog(null, "Ajout de la commande réussi.");
-
-                this.dispose();
-
+                nombre = FournisseursDAO.StocksVaccinFournisseur(typeVaccin, nomFournisseur) - CommandesDAO.CommandesFournisseurVaccin(typeVaccin, nomFournisseur) - Integer.valueOf(Quantiter.getText());
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Ajout de la commande échouer, veuillez réessayer.");
+                Logger.getLogger(ajoutStockFenetre.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if (nombre < 0) {
+                JOptionPane.showMessageDialog(null, "Il n'y as pas assez de stocks chez ce fournisseurs pour commander ce vaccin");
+            } else {
+                try {
+                    //Ajoute la quantité
+                    String typeVaccin = TypeVaccins.getSelectedItem().toString();
+                    String nomFournisseur = NomFournisseur.getSelectedItem().toString();
+                    String nomClient = NomClient.getText();
+                    int quantiter = Integer.valueOf(Quantiter.getText());
+
+                    CommandesDAO.AjouterUneCommande(typeVaccin, nomFournisseur, nomClient, quantiter);
+
+                    JOptionPane.showMessageDialog(null, "Ajout de la commande réussi.");
+
+                    this.dispose();
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Ajout de la commande échouer, veuillez réessayer.");
+                }
             }
         }
     }//GEN-LAST:event_AjoutCommande
@@ -206,7 +225,7 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the dialog */

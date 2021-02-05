@@ -7,9 +7,11 @@ package projet.gestion.du.stocks.Classe;
 
 /**
  * Classe utilisé pour une commande
+ *
  * @author Luca GRUNENWALD
  */
 public class Commandes {
+
     /**
      * Propriété de la classe Commandes
      */
@@ -19,9 +21,10 @@ public class Commandes {
     private final String fournisseur;
     private final int nombreVaccinCommander;
     private final boolean CommandeValider;
-    
+
     /**
      * Constructeur de la classe commandes
+     *
      * @param id Identifiant de la commande
      * @param client Nom du client de la commande
      * @param vaccin Type de vaccin de la commande
@@ -37,18 +40,20 @@ public class Commandes {
         this.nombreVaccinCommander = nombreVaccinCommander;
         this.CommandeValider = CommandeValider;
     }
-    
+
     //Méthodes public
     /**
      * Récupère l'identifiant de la commande
+     *
      * @return int - L'identifiant
      */
     public int getId() {
         return id;
     }
-    
+
     /**
      * Récupère le nom du client de la commande
+     *
      * @return String - Le nom du client
      */
     public String getClient() {
@@ -57,6 +62,7 @@ public class Commandes {
 
     /**
      * Récupère le type de vaccin de la commande
+     *
      * @return String - Le type de vaccin
      */
     public String getVaccin() {
@@ -65,6 +71,7 @@ public class Commandes {
 
     /**
      * Récupère le nom du fournisseur de la commande
+     *
      * @return String - Nom du fournisseur
      */
     public String getFournisseur() {
@@ -73,6 +80,7 @@ public class Commandes {
 
     /**
      * Récupère le nombre de vaccin de la commande
+     *
      * @return int - Le nombre de vaccin
      */
     public int getNombreVaccinCommander() {
@@ -81,6 +89,7 @@ public class Commandes {
 
     /**
      * Vérifie si une commande est valider
+     *
      * @return boolean - Commande valider ?
      */
     public boolean isCommandeValider() {

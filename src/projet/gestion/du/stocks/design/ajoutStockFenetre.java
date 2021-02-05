@@ -6,6 +6,8 @@
 package projet.gestion.du.stocks.design;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import projet.gestion.du.stocks.dao.FournisseursDAO;
@@ -19,18 +21,19 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
 
     /**
      * Créer une nouvelle fenêtre ajouteStockFenetre
+     *
      * @param parent La fenêtre parent
      * @param modal Le model de la fênetre
      */
     public ajoutStockFenetre(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         //Chargement des vaccins de la base de données dans l'applications
         VaccinsDAO.getListeVaccins().forEach(vaccin -> {
             TypeVaccins.addItem(vaccin.getTypeVaccin());
         });
-        
+
         FournisseursDAO.getListeFounisseurs().forEach(fournisseur -> {
             NomFournisseur.addItem(fournisseur.getNomFournisseur());
         });
@@ -131,17 +134,19 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
 
     /**
      * Methode permettant l'ajout du stocks lors du click sur le boutton ok
-     * @param evt 
+     *
+     * @param evt
      */
     private void AjoutStocks(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutStocks
-        String oublie = ""; int label = 0;
-        
+        String oublie = "";
+        int label = 0;
+
         //Vérification label sont bien remplie et avec les bonnes données
-        if(TypeVaccins.getSelectedItem() == null || TypeVaccins.getSelectedItem().toString().isBlank()){
+        if (TypeVaccins.getSelectedItem() == null || TypeVaccins.getSelectedItem().toString().isBlank()) {
             oublie += "Type de vaccin, ";
             label++;
         }
-        if(NomFournisseur.getSelectedItem() == null || NomFournisseur.getSelectedItem().toString().isBlank()) {
+        if (NomFournisseur.getSelectedItem() == null || NomFournisseur.getSelectedItem().toString().isBlank()) {
             oublie += "Nom du fournisseur, ";
             label++;
         }
@@ -150,11 +155,11 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
             oublie += "quantité ";
             label++;
         }
-        
+
         if (!oublie.isEmpty() && label == 1) {
-            JOptionPane.showMessageDialog(null, oublie+" est incorrect");
-        } else if (!oublie.isEmpty() && label > 1){
-            JOptionPane.showMessageDialog(null, oublie+" sont incorrect");
+            JOptionPane.showMessageDialog(null, oublie + " est incorrect");
+        } else if (!oublie.isEmpty() && label > 1) {
+            JOptionPane.showMessageDialog(null, oublie + " sont incorrect");
         } else {
             try {
                 //Ajoute la quantité
@@ -170,6 +175,8 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Ajout du stocks échouer, veuillez réessayer.");
+            } catch (Exception ex) {
+                Logger.getLogger(ajoutStockFenetre.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_AjoutStocks

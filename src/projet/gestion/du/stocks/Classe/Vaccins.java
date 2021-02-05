@@ -7,9 +7,11 @@ package projet.gestion.du.stocks.Classe;
 
 /**
  * Classe utilisé pour un vaccin
+ *
  * @author Luca GRUNENWALD
  */
 public class Vaccins {
+
     /**
      * Propriété de la classe vaccins
      */
@@ -21,6 +23,7 @@ public class Vaccins {
 
     /**
      * Constructeur de la classe vaccins
+     *
      * @param id Identifiant du vaccin
      * @param typeVaccin Type du vaccin
      * @param nombreCommander Nombre de commande du vaccin
@@ -34,11 +37,12 @@ public class Vaccins {
         this.nombreDisponible = nombreDisponible;
         this.totalStocks = totalStocks;
     }
-    
+
     //Méthodes public
     /**
      * Récupére l'identifiant du vaccins
-     * @return int - L'identifiant 
+     *
+     * @return int - L'identifiant
      */
     public int getId() {
         return id;
@@ -46,22 +50,25 @@ public class Vaccins {
 
     /**
      * Récupére le type de vaccin
+     *
      * @return String - Type du vaccin
      */
     public String getTypeVaccin() {
         return typeVaccin;
     }
-    
+
     /**
      * Récupére le nombre de commande du vaccin
+     *
      * @return int - Nombre de vaccin commander
      */
     public int getNombreCommander() {
         return nombreCommander;
     }
-    
+
     /**
      * Récupére le nombre disponible du vaccin
+     *
      * @return int - Nombre de vaccin disponible
      */
     public int getNombreDisponible() {
@@ -70,6 +77,7 @@ public class Vaccins {
 
     /**
      * Récupére le total des sotcks du vaccin
+     *
      * @return int - Total du stocks du vaccin
      */
     public int getTotalStocks() {
@@ -78,6 +86,7 @@ public class Vaccins {
 
     /**
      * Modifie le total des stocks du vaccin
+     *
      * @param totalStocks Total de stocks pour le vaccin
      */
     public void setTotalStocks(int totalStocks) {

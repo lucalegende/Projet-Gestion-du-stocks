@@ -7,9 +7,11 @@ package projet.gestion.du.stocks.Classe;
 
 /**
  * Classe utilisé pour un fournisseur
+ *
  * @author Luca GRUNENWALD
  */
 public class Fournisseurs {
+
     /**
      * Propriété de la classe fournisseurs
      */
@@ -18,9 +20,10 @@ public class Fournisseurs {
     private final int nombreCommander;
     private final int nombreDisponible;
     private int totalStocks;
-    
+
     /**
      * Constructeur de la classe fournisseurs
+     *
      * @param id Identifiant du fournisseur
      * @param nomFournisseur Nom du fournisseur
      * @param nombreCommander Nombre de commande lié au fournisseur
@@ -34,10 +37,11 @@ public class Fournisseurs {
         this.nombreDisponible = nombreDisponible;
         this.totalStocks = totalStocks;
     }
-    
+
     //Méthodes public
     /**
      * Récupère l'identifiant du fournisseur
+     *
      * @return int - L'identifiant
      */
     public int getId() {
@@ -46,6 +50,7 @@ public class Fournisseurs {
 
     /**
      * Récupère le nom du fournisseur
+     *
      * @return String - Nom du fournisseur
      */
     public String getNomFournisseur() {
@@ -54,6 +59,7 @@ public class Fournisseurs {
 
     /**
      * Récupère le nombre de commander passer chez le fournisseur
+     *
      * @return int - Nombre de commande
      */
     public int getNombreCommander() {
@@ -62,6 +68,7 @@ public class Fournisseurs {
 
     /**
      * Récupère le nombre disponible de vaccin du fournisseur
+     *
      * @return int - Nombre de vaccin disponible
      */
     public int getNombreDisponible() {
@@ -70,6 +77,7 @@ public class Fournisseurs {
 
     /**
      * Récupère le nombre total de stocks de vaccin du fournissuer
+     *
      * @return int - Total de stocks du vaccin
      */
     public int getTotalStocks() {
@@ -78,10 +86,11 @@ public class Fournisseurs {
 
     /**
      * Modifie le nombre total de stocks du fournisseur
+     *
      * @param totalStocks Total de stocks pour le fournisseur
      */
     public void setTotalStocks(int totalStocks) {
         this.totalStocks = totalStocks;
     }
-    
+
 }
