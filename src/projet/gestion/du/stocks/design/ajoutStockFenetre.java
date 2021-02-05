@@ -50,7 +50,7 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        Quantité = new javax.swing.JTextField();
+        Quantiter = new javax.swing.JTextField();
         TypeVaccins = new javax.swing.JComboBox<>();
         NomFournisseur = new javax.swing.JComboBox<>();
 
@@ -69,7 +69,7 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
         jButton1.setText("Ok");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AjoutStocks(evt);
             }
         });
 
@@ -96,7 +96,7 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
                                     .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Quantité, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(Quantiter, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                                     .addComponent(NomFournisseur, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(TypeVaccins, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
@@ -120,7 +120,7 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Quantité, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Quantiter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jButton1)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -129,7 +129,7 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AjoutStocks(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutStocks
         String oublie = ""; int label = 0;
         
         //Vérification label sont bien remplie et avec les bonnes données
@@ -142,7 +142,7 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
             label++;
         }
 
-        if (Quantité.getText().isBlank() || !Pattern.matches("[0-9]+", Quantité.getText())) {
+        if (Quantiter.getText().isBlank() || !Pattern.matches("[0-9]+", Quantiter.getText())) {
             oublie += "quantité ";
             label++;
         }
@@ -156,9 +156,9 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
                 //Ajoute la quantité
                 String typeVaccin = TypeVaccins.getSelectedItem().toString();
                 String nomFournisseur = NomFournisseur.getSelectedItem().toString();
-                int quantité = Integer.valueOf(Quantité.getText());
+                int quantiter = Integer.valueOf(Quantiter.getText());
 
-                VaccinsDAO.MiseAJourListeVaccins(typeVaccin, nomFournisseur, quantité);
+                VaccinsDAO.MiseAJourListeVaccins(typeVaccin, nomFournisseur, quantiter);
 
                 JOptionPane.showMessageDialog(null, "Ajout du stocks réussi.");
 
@@ -168,7 +168,7 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Ajout du stocks échouer, veuillez réessayer.");
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AjoutStocks
 
     /**
      * @param args the command line arguments
@@ -215,7 +215,7 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> NomFournisseur;
-    private javax.swing.JTextField Quantité;
+    private javax.swing.JTextField Quantiter;
     private javax.swing.JComboBox<String> TypeVaccins;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

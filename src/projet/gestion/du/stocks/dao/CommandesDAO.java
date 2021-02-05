@@ -50,7 +50,7 @@ public class CommandesDAO {
     }
     
     //Méthodes : Mise à jour des données dans la base
-    public static boolean AjouterUneCommande(String typeVaccin, String nomFournisseur, String client, int quantité) throws SQLException{
+    public static boolean AjouterUneCommande(String typeVaccin, String nomFournisseur, String client, int quantiter) throws SQLException{
         //On essaye de se connecter
         Connection connexion = ConnectionDAO.getInstance().getConnexion();
         
@@ -60,7 +60,7 @@ public class CommandesDAO {
         //Préparation de la requete
         PreparedStatement ps = connexion.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, client);
-        ps.setInt(2, quantité);
+        ps.setInt(2, quantiter);
         ps.execute();
         
         //On récupère l'id générer

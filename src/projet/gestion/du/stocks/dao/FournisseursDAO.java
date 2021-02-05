@@ -73,11 +73,11 @@ public class FournisseursDAO {
         return ps.executeUpdate() == 1;  
     }
     
-    public static boolean AjouterDuStocks(String NomFournisseurs, int Quantité) throws SQLException{
+    public static boolean AjouterDuStocks(String NomFournisseurs, int Quantiter) throws SQLException{
 
         //On incrémente la donnée et on la récupère dans une variable
         Listefournisseurs.stream().filter(Listefournisseur -> (Listefournisseur.getNomFournisseur().equals(NomFournisseurs))).forEachOrdered(Listefournisseur -> {
-            Listefournisseur.setTotalStocks(Listefournisseur.getTotalStocks()+Quantité);
+            Listefournisseur.setTotalStocks(Listefournisseur.getTotalStocks()+Quantiter);
         });
         
         Fournisseurs f = Listefournisseurs.stream().filter(x -> x.getNomFournisseur().equals(NomFournisseurs)).findFirst().orElse(null);
@@ -97,16 +97,16 @@ public class FournisseursDAO {
         return ps.executeUpdate() == 1; 
     }
     
-    public static void MiseAJourListeFournisseur(String NomFournisseur, int Quantité) throws SQLException{
+    public static void MiseAJourListeFournisseur(String NomFournisseur, int Quantiter) throws SQLException{
         Fournisseurs founisseur = Listefournisseurs.stream().filter(x -> x.getNomFournisseur().equals(NomFournisseur)).findFirst().orElse(null);
         
         //Si le vaccin n'est pas trouver
         if (founisseur == null) {
             //On ajoute un vaccin
-            AjouterUnFounisseur(NomFournisseur, Quantité);
+            AjouterUnFounisseur(NomFournisseur, Quantiter);
         } else {
             //Sinon on ajoute la quantité
-            AjouterDuStocks(NomFournisseur, Quantité);
+            AjouterDuStocks(NomFournisseur, Quantiter);
         }
         
         //On recharge la liste

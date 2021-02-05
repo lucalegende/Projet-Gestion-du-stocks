@@ -69,10 +69,10 @@ public class VaccinsDAO {
         return ps.executeUpdate() == 1;  
     }
     
-    public static boolean AjouterDuStock(String TypeVaccin, int Quantité) throws SQLException{
+    public static boolean AjouterDuStock(String TypeVaccin, int Quantiter) throws SQLException{
         //On incrémente la donnée et on la récupère dans une variable
         ListeVaccins.stream().filter(Listefournisseur -> (Listefournisseur.getTypeVaccin().equals(TypeVaccin))).forEachOrdered(Listefournisseur -> {
-            Listefournisseur.setTotalStocks(Listefournisseur.getTotalStocks()+Quantité);
+            Listefournisseur.setTotalStocks(Listefournisseur.getTotalStocks()+Quantiter);
         });
         
         Vaccins v = ListeVaccins.stream().filter(x -> x.getTypeVaccin().equals(TypeVaccin)).findFirst().orElse(null);
@@ -96,20 +96,20 @@ public class VaccinsDAO {
         
     }*/
     
-    public static void MiseAJourListeVaccins(String TypeVaccin, String NomFournisseur, int Quantité) throws SQLException{
+    public static void MiseAJourListeVaccins(String TypeVaccin, String NomFournisseur, int Quantiter) throws SQLException{
         
         Vaccins vaccin = ListeVaccins.stream().filter(x -> x.getTypeVaccin().equals(TypeVaccin)).findFirst().orElse(null);
         
         //Si le vaccin n'est pas trouver
         if (vaccin == null) {
             //On ajoute un vaccin
-            AjouterUnVaccin(TypeVaccin, Quantité);
+            AjouterUnVaccin(TypeVaccin, Quantiter);
         } else {
             //Sinon on ajoute la quantité
-            AjouterDuStock(TypeVaccin, Quantité);
+            AjouterDuStock(TypeVaccin, Quantiter);
         }
         
-        FournisseursDAO.MiseAJourListeFournisseur(NomFournisseur, Quantité);
+        FournisseursDAO.MiseAJourListeFournisseur(NomFournisseur, Quantiter);
         
         //On recharge la liste
         ChargerListeVaccins();

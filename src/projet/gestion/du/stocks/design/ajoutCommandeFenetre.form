@@ -45,7 +45,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="NomClient" alignment="0" pref="160" max="32767" attributes="0"/>
-                              <Component id="Quantité" alignment="0" pref="160" max="32767" attributes="0"/>
+                              <Component id="Quantiter" alignment="0" pref="160" max="32767" attributes="0"/>
                               <Component id="NomFournisseur" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -79,7 +79,7 @@
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Quantité" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Quantiter" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -104,12 +104,12 @@
         <Property name="text" type="java.lang.String" value="Ok"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AjoutCommande"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NomClient">
     </Component>
-    <Component class="javax.swing.JTextField" name="Quantit&#xe9;">
+    <Component class="javax.swing.JTextField" name="Quantiter">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>

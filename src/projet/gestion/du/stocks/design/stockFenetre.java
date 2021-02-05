@@ -86,7 +86,7 @@ public class stockFenetre extends javax.swing.JFrame {
         jButton5.setText("Ajouter un stock");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                AjoutStockFenetre(evt);
             }
         });
 
@@ -144,7 +144,7 @@ public class stockFenetre extends javax.swing.JFrame {
         jButton6.setText("Ajouter une commande");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                AjoutCommandeFenetre(evt);
             }
         });
 
@@ -152,7 +152,7 @@ public class stockFenetre extends javax.swing.JFrame {
         jButtonValidate.setEnabled(false);
         jButtonValidate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonValidateActionPerformed(evt);
+                ValiderCommande(evt);
             }
         });
 
@@ -160,7 +160,7 @@ public class stockFenetre extends javax.swing.JFrame {
         jButtonAnnuler.setEnabled(false);
         jButtonAnnuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAnnulerActionPerformed(evt);
+                AnnulerCommande(evt);
             }
         });
 
@@ -215,7 +215,7 @@ public class stockFenetre extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnulerActionPerformed
+    private void AnnulerCommande(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerCommande
         Collection CommandeSelectionner = ((DefaultTableModel) jTableCommandes.getModel()).getDataVector().elementAt(jTableCommandes.getSelectedRow());
         int IdCommandes = (Integer) CommandeSelectionner.iterator().next();
         
@@ -231,10 +231,10 @@ public class stockFenetre extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonAnnulerActionPerformed
+    }//GEN-LAST:event_AnnulerCommande
 
     @SuppressWarnings("empty-statement")
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void AjoutStockFenetre(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutStockFenetre
         
         JDialog jfrm2= new ajoutStockFenetre(this, rootPaneCheckingEnabled);
         jfrm2.setModal(true);
@@ -246,9 +246,9 @@ public class stockFenetre extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_AjoutStockFenetre
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void AjoutCommandeFenetre(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutCommandeFenetre
         if (VaccinsDAO.getListeVaccins().size() > 0) {
             JDialog jfrm2= new ajoutCommandeFenetre(this, rootPaneCheckingEnabled);
             jfrm2.setModal(true);
@@ -264,14 +264,14 @@ public class stockFenetre extends javax.swing.JFrame {
             //On affiche un texte si aucun vaccin n'existe et donc on ne peut pas commander
             JOptionPane.showMessageDialog(null, "Vous ne pouvez pas commander car vous n'avez pas ajouté de vaccin.");
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_AjoutCommandeFenetre
 
     private void jTableCommandesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCommandesMouseClicked
         jButtonValidate.setEnabled(true);
         jButtonAnnuler.setEnabled(true);  
     }//GEN-LAST:event_jTableCommandesMouseClicked
 
-    private void jButtonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidateActionPerformed
+    private void ValiderCommande(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderCommande
         Collection CommandeSelectionner = ((DefaultTableModel) jTableCommandes.getModel()).getDataVector().elementAt(jTableCommandes.getSelectedRow());
         int IdCommandes = (Integer) CommandeSelectionner.iterator().next();
         
@@ -287,7 +287,7 @@ public class stockFenetre extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonValidateActionPerformed
+    }//GEN-LAST:event_ValiderCommande
 
     /**
      * @param args the command line arguments

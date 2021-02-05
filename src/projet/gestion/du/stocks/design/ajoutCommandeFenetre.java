@@ -50,7 +50,7 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         NomClient = new javax.swing.JTextField();
-        Quantité = new javax.swing.JTextField();
+        Quantiter = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         NomFournisseur = new javax.swing.JComboBox<>();
         TypeVaccins = new javax.swing.JComboBox<>();
@@ -66,7 +66,7 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
         jButton1.setText("Ok");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AjoutCommande(evt);
             }
         });
 
@@ -101,7 +101,7 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(NomClient, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                .addComponent(Quantité, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                .addComponent(Quantiter, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                                 .addComponent(NomFournisseur, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jLabel1)))
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -126,7 +126,7 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Quantité, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Quantiter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jButton1)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -135,7 +135,7 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AjoutCommande(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutCommande
         //Vérification label sont bien remplie et avec les bonnes données
         String oublie = ""; int label = 0;
         
@@ -152,7 +152,7 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
             oublie += "Nom du client, ";
             label++;
         }
-        if (Quantité.getText().isBlank() || !Pattern.matches("[0-9]+", Quantité.getText())) {
+        if (Quantiter.getText().isBlank() || !Pattern.matches("[0-9]+", Quantiter.getText())) {
             oublie += "quantité ";
             label++;
         }
@@ -167,9 +167,9 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
                 String typeVaccin = TypeVaccins.getSelectedItem().toString();
                 String nomFournisseur = NomFournisseur.getSelectedItem().toString();
                 String nomClient = NomClient.getText();
-                int quantité = Integer.valueOf(Quantité.getText());
+                int quantiter = Integer.valueOf(Quantiter.getText());
 
-                CommandesDAO.AjouterUneCommande(typeVaccin, nomFournisseur, nomClient, quantité);
+                CommandesDAO.AjouterUneCommande(typeVaccin, nomFournisseur, nomClient, quantiter);
 
                 JOptionPane.showMessageDialog(null, "Ajout de la commande réussi.");
 
@@ -179,7 +179,7 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Ajout de la commande échouer, veuillez réessayer.");
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AjoutCommande
 
     /**
      * @param args the command line arguments
@@ -221,7 +221,7 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NomClient;
     private javax.swing.JComboBox<String> NomFournisseur;
-    private javax.swing.JTextField Quantité;
+    private javax.swing.JTextField Quantiter;
     private javax.swing.JComboBox<String> TypeVaccins;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Projet-Gestion-du-stocks">
+  <ClassDiagramComponents>
+    <Class name="Commandes" package="projet.gestion.du.stocks.Classe" visibility="public" xPosition="21.0" yPosition="527.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="client" type="String" visibility="private"/>
+        <Field name="vaccin" type="String" visibility="private"/>
+        <Field name="fournisseur" type="String" visibility="private"/>
+        <Field name="nombreVaccinCommander" type="int" visibility="private"/>
+        <Field name="CommandeValider" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="client"/>
+          <Argument type="String" name="vaccin"/>
+          <Argument type="String" name="fournisseur"/>
+          <Argument type="int" name="nombreVaccinCommander"/>
+          <Argument type="boolean" name="CommandeValider"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getClient" returnType="String" visibility="public"/>
+        <Method name="setClient" returnType="void" visibility="public">
+          <Argument type="String" name="client"/>
+        </Method>
+        <Method name="getVaccin" returnType="String" visibility="public"/>
+        <Method name="setVaccin" returnType="void" visibility="public">
+          <Argument type="String" name="vaccin"/>
+        </Method>
+        <Method name="getFournisseur" returnType="String" visibility="public"/>
+        <Method name="setFournisseur" returnType="void" visibility="public">
+          <Argument type="String" name="fournisseur"/>
+        </Method>
+        <Method name="getNombreVaccinCommander" returnType="int" visibility="public"/>
+        <Method name="setNombreVaccinCommander" returnType="void" visibility="public">
+          <Argument type="int" name="nombreVaccinCommander"/>
+        </Method>
+        <Method name="isCommandeValider" returnType="boolean" visibility="public"/>
+        <Method name="setCommandeValider" returnType="void" visibility="public">
+          <Argument type="boolean" name="CommandeValider"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Fournisseurs" package="projet.gestion.du.stocks.Classe" visibility="public" xPosition="789.0" yPosition="527.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="nomFournisseur" type="String" visibility="private"/>
+        <Field name="nombreCommander" type="int" visibility="private"/>
+        <Field name="nombreDisponible" type="int" visibility="private"/>
+        <Field name="totalStocks" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="nomFournisseur"/>
+          <Argument type="int" name="nombreCommander"/>
+          <Argument type="int" name="nombreDisponible"/>
+          <Argument type="int" name="totalStocks"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getNomFournisseur" returnType="String" visibility="public"/>
+        <Method name="setNomFournisseur" returnType="void" visibility="public">
+          <Argument type="String" name="nomFournisseur"/>
+        </Method>
+        <Method name="getNombreCommander" returnType="int" visibility="public"/>
+        <Method name="setNombreCommander" returnType="void" visibility="public">
+          <Argument type="int" name="nombreCommander"/>
+        </Method>
+        <Method name="getNombreDisponible" returnType="int" visibility="public"/>
+        <Method name="setNombreDisponible" returnType="void" visibility="public">
+          <Argument type="int" name="nombreDisponible"/>
+        </Method>
+        <Method name="getTotalStocks" returnType="int" visibility="public"/>
+        <Method name="setTotalStocks" returnType="void" visibility="public">
+          <Argument type="int" name="totalStocks"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Vaccins" package="projet.gestion.du.stocks.Classe" visibility="public" xPosition="1485.0" yPosition="527.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="typeVaccin" type="String" visibility="private"/>
+        <Field name="nombreCommander" type="int" visibility="private"/>
+        <Field name="nombreDisponible" type="int" visibility="private"/>
+        <Field name="totalStocks" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="typeVaccin"/>
+          <Argument type="int" name="nombreCommander"/>
+          <Argument type="int" name="nombreDisponible"/>
+          <Argument type="int" name="totalStocks"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getTypeVaccin" returnType="String" visibility="public"/>
+        <Method name="setTypeVaccin" returnType="void" visibility="public">
+          <Argument type="String" name="typeVaccin"/>
+        </Method>
+        <Method name="getNombreCommander" returnType="int" visibility="public"/>
+        <Method name="setNombreCommander" returnType="void" visibility="public">
+          <Argument type="int" name="nombreCommander"/>
+        </Method>
+        <Method name="getNombreDisponible" returnType="int" visibility="public"/>
+        <Method name="setNombreDisponible" returnType="void" visibility="public">
+          <Argument type="int" name="nombreDisponible"/>
+        </Method>
+        <Method name="getTotalStocks" returnType="int" visibility="public"/>
+        <Method name="setTotalStocks" returnType="void" visibility="public">
+          <Argument type="int" name="totalStocks"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CommandesDAO" package="projet.gestion.du.stocks.dao" visibility="public" xPosition="73.0" yPosition="137.0">
+      <Fields>
+        <Field name="ListeCommandes" type="ArrayList&lt;Commandes&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="ChargerListeCommandes" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="AjouterUneCommande" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="typeVaccin"/>
+          <Argument type="String" name="nomFournisseur"/>
+          <Argument type="String" name="client"/>
+          <Argument type="int" name="quantiter"/>
+        </Method>
+        <Method name="ValiderUneCommande" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="int" name="idCommandes"/>
+        </Method>
+        <Method name="AnnulerUneCommande" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="int" name="idCommandes"/>
+        </Method>
+        <Method name="getListeCommandes" returnType="ArrayList&lt;Commandes&gt;" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="ConnectionDAO" package="projet.gestion.du.stocks.dao" visibility="public" xPosition="1114.0" yPosition="1354.0">
+      <Fields>
+        <Field name="URL" type="String" visibility="package" isStatic="true" isFinal="true"/>
+        <Field name="LOGIN" type="String" visibility="package" isStatic="true" isFinal="true"/>
+        <Field name="PASS" type="String" visibility="package" isStatic="true" isFinal="true"/>
+        <Field name="instance" type="ConnectionDAO" visibility="private" isStatic="true"/>
+        <Field name="connexion" type="Connection" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="ConnectionDAO" visibility="public" isStatic="true"/>
+        <Method name="getConnexion" returnType="Connection" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="FournisseursDAO" package="projet.gestion.du.stocks.dao" visibility="public" xPosition="870.0" yPosition="137.0">
+      <Fields>
+        <Field name="Listefournisseurs" type="ArrayList&lt;Fournisseurs&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="ChargerListeFournisseurs" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="AjouterUnFounisseur" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="NomFournisseur"/>
+          <Argument type="int" name="TotalStocks"/>
+        </Method>
+        <Method name="AjouterDuStocks" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="NomFournisseurs"/>
+          <Argument type="int" name="Quantiter"/>
+        </Method>
+        <Method name="MiseAJourListeFournisseur" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="NomFournisseur"/>
+          <Argument type="int" name="Quantiter"/>
+        </Method>
+        <Method name="getListeFounisseurs" returnType="ArrayList&lt;Fournisseurs&gt;" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="VaccinsDAO" package="projet.gestion.du.stocks.dao" visibility="public" xPosition="1496.0" yPosition="147.0">
+      <Fields>
+        <Field name="ListeVaccins" type="ArrayList&lt;Vaccins&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="ChargerListeVaccins" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="AjouterUnVaccin" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="TypeVaccin"/>
+          <Argument type="int" name="TotalStocks"/>
+        </Method>
+        <Method name="AjouterDuStock" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="TypeVaccin"/>
+          <Argument type="int" name="Quantiter"/>
+        </Method>
+        <Method name="MiseAJourListeVaccins" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="TypeVaccin"/>
+          <Argument type="String" name="NomFournisseur"/>
+          <Argument type="int" name="Quantiter"/>
+        </Method>
+        <Method name="getListeVaccins" returnType="ArrayList&lt;Vaccins&gt;" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="ajoutCommandeFenetre" package="projet.gestion.du.stocks.design" visibility="public" xPosition="1496.0" yPosition="971.0">
+      <Fields>
+        <Field name="NomClient" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="NomFournisseur" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="Quantiter" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="TypeVaccins" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="AjoutCommande" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ajoutStockFenetre" package="projet.gestion.du.stocks.design" visibility="public" xPosition="789.0" yPosition="1009.0">
+      <Fields>
+        <Field name="NomFournisseur" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="Quantiter" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="TypeVaccins" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="AjoutStocks" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="stockFenetre" package="projet.gestion.du.stocks.design" visibility="public" xPosition="44.0" yPosition="1009.0">
+      <Fields>
+        <Field name="jButton5" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton6" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButtonAnnuler" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButtonValidate" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jScrollPane4" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane5" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane6" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTableCommandes" type="javax.swing.JTable" visibility="private"/>
+        <Field name="jTableFournisseurs" type="javax.swing.JTable" visibility="private"/>
+        <Field name="jTableVaccins" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="AnnulerCommande" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="AjoutStockFenetre" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="AjoutCommandeFenetre" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jTableCommandesMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="ValiderCommande" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="refreshTable" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="ProjetGestionDuStocks" package="projet.gestion.du.stocks" visibility="public" xPosition="789.0" yPosition="1408.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="projet.gestion.du.stocks.dao.VaccinsDAO" target="projet.gestion.du.stocks.Classe.Vaccins" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="projet.gestion.du.stocks.dao.FournisseursDAO" target="projet.gestion.du.stocks.Classe.Fournisseurs" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Listefournisseurs" source="projet.gestion.du.stocks.dao.FournisseursDAO" target="projet.gestion.du.stocks.Classe.Fournisseurs" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Fournisseurs&gt;"/>
+    <HasRelation name="ListeCommandes" source="projet.gestion.du.stocks.dao.CommandesDAO" target="projet.gestion.du.stocks.Classe.Commandes" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Commandes&gt;"/>
+    <HasRelation name="ListeVaccins" source="projet.gestion.du.stocks.dao.VaccinsDAO" target="projet.gestion.du.stocks.Classe.Vaccins" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Vaccins&gt;"/>
+    <UseRelation source="projet.gestion.du.stocks.dao.ConnectionDAO" target="projet.gestion.du.stocks.dao.ConnectionDAO" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="projet.gestion.du.stocks.dao.CommandesDAO" target="projet.gestion.du.stocks.Classe.Commandes" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="projet.gestion.du.stocks.dao.ConnectionDAO" target="projet.gestion.du.stocks.dao.ConnectionDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
