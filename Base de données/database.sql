@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 05 fév. 2021 à 13:22
+-- Généré le : ven. 05 fév. 2021 à 16:31
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `commandes` (
   `Client` varchar(255) COLLATE utf8_bin NOT NULL,
   `Nombre_Commander` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -62,9 +62,31 @@ DROP TABLE IF EXISTS `fournisseurs`;
 CREATE TABLE IF NOT EXISTS `fournisseurs` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Nom_fournisseur` varchar(255) COLLATE utf8_bin NOT NULL,
-  `Total_de_stocks` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `fournisseurs`
+--
+
+INSERT INTO `fournisseurs` (`Id`, `Nom_fournisseur`) VALUES
+(2, 'Moderna Therapeutics'),
+(16, 'Moderna Therapeutic');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `stocks`
+--
+
+DROP TABLE IF EXISTS `stocks`;
+CREATE TABLE IF NOT EXISTS `stocks` (
+  `Id_Fournisseur` int(11) NOT NULL,
+  `Id_Vaccin` int(11) NOT NULL,
+  `Total_Stocks` int(11) NOT NULL,
+  PRIMARY KEY (`Id_Fournisseur`,`Id_Vaccin`),
+  KEY `stocks_Vaccins0_FK` (`Id_Vaccin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -76,9 +98,8 @@ DROP TABLE IF EXISTS `vaccins`;
 CREATE TABLE IF NOT EXISTS `vaccins` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Type_Vaccin` varchar(255) COLLATE utf8_bin NOT NULL,
-  `Total_stocks` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Contraintes pour les tables déchargées
@@ -91,6 +112,13 @@ ALTER TABLE `achat`
   ADD CONSTRAINT `Achat_Commandes1_FK` FOREIGN KEY (`Id_Commandes`) REFERENCES `commandes` (`Id`),
   ADD CONSTRAINT `Achat_Fournisseurs0_FK` FOREIGN KEY (`Id_Fournisseurs`) REFERENCES `fournisseurs` (`Id`),
   ADD CONSTRAINT `Achat_Vaccins_FK` FOREIGN KEY (`Id_Vaccins`) REFERENCES `vaccins` (`Id`);
+
+--
+-- Contraintes pour la table `stocks`
+--
+ALTER TABLE `stocks`
+  ADD CONSTRAINT `stocks_Fournisseurs_FK` FOREIGN KEY (`Id_Fournisseur`) REFERENCES `fournisseurs` (`Id`),
+  ADD CONSTRAINT `stocks_Vaccins0_FK` FOREIGN KEY (`Id_Vaccin`) REFERENCES `vaccins` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
