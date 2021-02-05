@@ -137,13 +137,13 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
 
             VaccinsDAO.MiseAJourListeVaccins(typeVaccin, nomFournisseur, quantité);
 
-            JOptionPane.showMessageDialog(null, "Ajout du stocks réussi ");
+            JOptionPane.showMessageDialog(null, "Ajout du stocks réussi.");
+            
+            this.dispose();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ajout du stocks échouer ");
+            JOptionPane.showMessageDialog(null, "Ajout du stocks échouer, veuillez réessayer.");
         }
-
-        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

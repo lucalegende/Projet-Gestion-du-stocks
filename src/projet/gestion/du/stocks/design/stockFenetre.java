@@ -5,7 +5,12 @@
  */
 package projet.gestion.du.stocks.design;
 
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projet.gestion.du.stocks.Classe.Commandes;
 import projet.gestion.du.stocks.Classe.Fournisseurs;
@@ -22,8 +27,9 @@ public class stockFenetre extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
+     * @throws java.sql.SQLException
      */
-    public stockFenetre() {
+    public stockFenetre() throws SQLException {
         initComponents();
         
         refreshTable();
@@ -132,9 +138,6 @@ public class stockFenetre extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableCommandesMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTableCommandesMousePressed(evt);
-            }
         });
         jScrollPane6.setViewportView(jTableCommandes);
 
@@ -147,6 +150,11 @@ public class stockFenetre extends javax.swing.JFrame {
 
         jButtonValidate.setText("Valider la commande");
         jButtonValidate.setEnabled(false);
+        jButtonValidate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValidateActionPerformed(evt);
+            }
+        });
 
         jButtonAnnuler.setText("Annuler la commande");
         jButtonAnnuler.setEnabled(false);
@@ -208,7 +216,21 @@ public class stockFenetre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnulerActionPerformed
-        // TODO add your handling code here:
+        Collection CommandeSelectionner = ((DefaultTableModel) jTableCommandes.getModel()).getDataVector().elementAt(jTableCommandes.getSelectedRow());
+        int IdCommandes = (Integer) CommandeSelectionner.iterator().next();
+        
+        try {
+            CommandesDAO.AnnulerUneCommande(IdCommandes);
+            JOptionPane.showMessageDialog(null, "Annulation de la commande réussi.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Annulation de la commande échouer.");
+        }
+        
+        try {
+            refreshTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonAnnulerActionPerformed
 
     @SuppressWarnings("empty-statement")
@@ -219,13 +241,24 @@ public class stockFenetre extends javax.swing.JFrame {
         jfrm2.setVisible(true);
         jfrm2.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         
-        refreshTable();
+        try {
+            refreshTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        ajoutCommandeFenetre jfrm2= new ajoutCommandeFenetre();
+        JDialog jfrm2= new ajoutCommandeFenetre(this, rootPaneCheckingEnabled);
+        jfrm2.setModal(true);
         jfrm2.setVisible(true);
-        jfrm2.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        jfrm2.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        
+        try {
+            refreshTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTableCommandesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCommandesMouseClicked
@@ -233,9 +266,23 @@ public class stockFenetre extends javax.swing.JFrame {
         jButtonAnnuler.setEnabled(true);  
     }//GEN-LAST:event_jTableCommandesMouseClicked
 
-    private void jTableCommandesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCommandesMousePressed
-
-    }//GEN-LAST:event_jTableCommandesMousePressed
+    private void jButtonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidateActionPerformed
+        Collection CommandeSelectionner = ((DefaultTableModel) jTableCommandes.getModel()).getDataVector().elementAt(jTableCommandes.getSelectedRow());
+        int IdCommandes = (Integer) CommandeSelectionner.iterator().next();
+        
+        try {
+            CommandesDAO.ValiderUneCommande(IdCommandes);
+            JOptionPane.showMessageDialog(null, "Validation de la commande réussi.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Validation de la commande échouer.");
+        }
+        
+        try {
+            refreshTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonValidateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,20 +315,30 @@ public class stockFenetre extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new stockFenetre().setVisible(true);
+            try {
+                new stockFenetre().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 
-    private void refreshTable(){
+    private void refreshTable() throws SQLException{
         // Mise a jour des données
+        //Commandes
+        CommandesDAO.ChargerListeCommandes();
         DefaultTableModel model = (DefaultTableModel) jTableCommandes.getModel();
         model.setRowCount(0);
         
         for (Commandes commande : CommandesDAO.getListeCommandes()) {
-            Object[] row = { commande.getId(), commande.getClient(), commande.getFournisseur(), commande.getVaccin(),commande.getNombreVaccinCommander()};
-            model.addRow(row);
+            if (!commande.isCommandeValider()) {
+                Object[] row = { commande.getId(), commande.getClient(), commande.getFournisseur(), commande.getVaccin(),commande.getNombreVaccinCommander()};
+                model.addRow(row);
+            }
         }
         
+        //Fournisseurs
+        FournisseursDAO.ChargerListeFournisseurs();
         model = (DefaultTableModel) jTableFournisseurs.getModel();
         model.setRowCount(0);
         
@@ -290,6 +347,8 @@ public class stockFenetre extends javax.swing.JFrame {
             model.addRow(row);
         }
         
+        //Vaccins
+        VaccinsDAO.ChargerListeVaccins();
         model = (DefaultTableModel) jTableVaccins.getModel();
         model.setRowCount(0);
         

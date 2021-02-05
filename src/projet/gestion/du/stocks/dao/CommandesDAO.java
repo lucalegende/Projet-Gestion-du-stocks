@@ -10,8 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import projet.gestion.du.stocks.Classe.Commandes;
+
 /**
  *
  * @author Kalictong
@@ -48,16 +50,88 @@ public class CommandesDAO {
     }
     
     //Méthodes : Mise à jour des données dans la base
-    public static void AjouterUneCommande(Commandes commande){
+    public static boolean AjouterUneCommande(String typeVaccin, String nomFournisseur, String client, int quantité) throws SQLException{
+        //On essaye de se connecter
+        Connection connexion = ConnectionDAO.getInstance().getConnexion();
         
+        //Requete SQL pour la liste des fournisseurs
+        String sql = "INSERT INTO COMMANDES (Client, Nombre_Commander) VALUES (?, ?)";
+        
+        //Préparation de la requete
+        PreparedStatement ps = connexion.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, client);
+        ps.setInt(2, quantité);
+        ps.execute();
+        
+        //On récupère l'id générer
+        ResultSet rs = ps.getGeneratedKeys();
+        
+        //Éxécution de la requete
+        if(rs != null && rs.first()){    
+            //Recherche des 3 id
+            int idVaccin = VaccinsDAO.getListeVaccins().stream().filter(x -> x.getTypeVaccin().equals(typeVaccin)).findFirst().orElse(null).getId();
+            int idFournisseur = FournisseursDAO.getListeFounisseurs().stream().filter(x -> x.getNomFournisseur().equals(nomFournisseur)).findFirst().orElse(null).getId();
+            int idCommande = rs.getInt(1);
+            
+            //Requete SQL pour la liste des fournisseurs
+            sql = "INSERT INTO ACHAT (Id_Vaccins, Id_Fournisseurs, Id_Commandes, Commande_Valider) VALUES (?, ?, ?, ?)";
+        
+            //Préparation de la requete
+            ps = connexion.prepareStatement(sql);
+            ps.setInt(1, idVaccin);
+            ps.setInt(2, idFournisseur);
+            ps.setInt(3, idCommande);
+            ps.setBoolean(4, false);
+            
+            if(ps.executeUpdate() == 1)
+                return true;
+        }  
+            
+        return false;
     }
     
-    public static void ValiderUneCommande(Commandes commande){
+    public static boolean ValiderUneCommande(int idCommandes) throws SQLException{
+        //On essaye de se connecter
+        Connection connexion = ConnectionDAO.getInstance().getConnexion();
         
+        //Requete SQL pour la liste des fournisseurs
+        String sql = "UPDATE ACHAT SET Commande_Valider = ? WHERE Id_Commandes = ?";
+        
+        //Préparation de la requete
+        PreparedStatement ps = connexion.prepareStatement(sql);
+        ps.setBoolean(1, true);
+        ps.setInt(2, idCommandes);
+        
+        //Éxécution de la requete
+        return ps.executeUpdate() == 1;
     }
     
-    public static void AnnulerUneCommande(Commandes commande){
+    public static boolean AnnulerUneCommande(int idCommandes) throws SQLException{
+        //On essaye de se connecter
+        Connection connexion = ConnectionDAO.getInstance().getConnexion();
         
+        //Requete SQL pour la liste des fournisseurs
+        String sql = "DELETE FROM ACHAT WHERE Id_Commandes = ?";
+        
+        //Préparation de la requete
+        PreparedStatement ps = connexion.prepareStatement(sql);
+        ps.setInt(1, idCommandes);
+        
+        //Éxécution de la requete
+        if(ps.executeUpdate() == 1){        
+            
+            //Requete SQL pour la liste des fournisseurs
+            sql = "DELETE FROM COMMANDES WHERE Id = ?";
+        
+            //Préparation de la requete
+            ps = connexion.prepareStatement(sql);
+            ps.setInt(1, idCommandes);
+            
+            if(ps.executeUpdate() == 1)
+                return true;
+        }
+
+        return false;
     }
     
     //Méthodes général

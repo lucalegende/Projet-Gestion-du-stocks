@@ -6,9 +6,6 @@
 package projet.gestion.du.stocks;
 
 import java.sql.SQLException;
-import projet.gestion.du.stocks.dao.CommandesDAO;
-import projet.gestion.du.stocks.dao.FournisseursDAO;
-import projet.gestion.du.stocks.dao.VaccinsDAO;
 import projet.gestion.du.stocks.design.stockFenetre;
 
 /**
@@ -20,16 +17,7 @@ public class ProjetGestionDuStocks {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
-        //Charge la liste des commandes
-        CommandesDAO.ChargerListeCommandes();
-
-        //Charge la liste des fournisseurs
-        FournisseursDAO.ChargerListeFournisseurs();
-        
-        //Charge la liste des vaccins
-        VaccinsDAO.ChargerListeVaccins();
-        
+    public static void main(String[] args) throws SQLException{
         stockFenetre stockF = new stockFenetre();
         stockF.setVisible(true);
     } 
