@@ -25,7 +25,7 @@ public class FournisseursDAO {
    
     /**
      * Méthodes pour récupérer la liste des fournisseurs dans la base de données
-     * @throws SQLException 
+     * @throws SQLException  Exception SQL
      */
     public static void ChargerListeFournisseurs() throws SQLException{
         //On initalise la liste des commandes
@@ -59,10 +59,10 @@ public class FournisseursDAO {
     
     /**
      * Méthode permettant d'ajouter un fournisseur
-     * @param NomFournisseur
-     * @param TotalStocks
+     * @param NomFournisseur Nom du fournisseur
+     * @param TotalStocks Total de stocks du vaccin chez le fournisseur
      * @return boolean
-     * @throws SQLException 
+     * @throws SQLException  Exception SQL
      */
     public static boolean AjouterUnFounisseur(String NomFournisseur, int TotalStocks) throws SQLException{
         //On essaye de se connecter
@@ -82,10 +82,10 @@ public class FournisseursDAO {
     
     /**
      * Méthode permettant d'ajouter du stocks au fournisseur
-     * @param NomFournisseurs
-     * @param Quantiter
+     * @param NomFournisseurs Nom du fournisseur
+     * @param Quantiter Quantité demandé
      * @return boolean
-     * @throws SQLException 
+     * @throws SQLException  Exception SQL
      */
     public static boolean AjouterDuStocks(String NomFournisseurs, int Quantiter) throws SQLException{
 
@@ -113,9 +113,9 @@ public class FournisseursDAO {
     
     /**
      * Méthode permettant de mettre a jour la liste des fournisseurs
-     * @param NomFournisseur
-     * @param Quantiter
-     * @throws SQLException 
+     * @param NomFournisseur Nom du fournisseur
+     * @param Quantiter Quantiter demandé
+     * @throws SQLException  Exception SQL
      */
     public static void MiseAJourListeFournisseur(String NomFournisseur, int Quantiter) throws SQLException{
         Fournisseurs founisseur = Listefournisseurs.stream().filter(x -> x.getNomFournisseur().equals(NomFournisseur)).findFirst().orElse(null);

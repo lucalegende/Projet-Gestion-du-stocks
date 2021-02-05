@@ -9,14 +9,15 @@ import java.sql.SQLException;
 import projet.gestion.du.stocks.design.stockFenetre;
 
 /**
- *
- * @author Kalic
+ * Classe principal pour le lancement de l'application
+ * @author Luca GRUNENWALD
  */
 public class ProjetGestionDuStocks {
 
     /**
+     * Méthode principal pour le lancement de l'application
      * @param args the command line arguments
-     * @throws java.sql.SQLException
+     * @throws java.sql.SQLException Exception SQL
      */
     public static void main(String[] args) throws SQLException{
         stockFenetre stockF = new stockFenetre();

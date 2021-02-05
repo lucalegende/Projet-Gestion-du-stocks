@@ -19,9 +19,9 @@ import projet.gestion.du.stocks.dao.VaccinsDAO;
 public class ajoutCommandeFenetre extends javax.swing.JDialog {
 
     /**
-     * Creates new form ajoutCommandeFenêtre
-     * @param parent
-     * @param modal
+     * Créer une nouvelle fenêtre ajoutCommandeFenêtre
+     * @param parent La fenêtre parent
+     * @param modal Le model de la fênetre
      */
     public ajoutCommandeFenetre(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

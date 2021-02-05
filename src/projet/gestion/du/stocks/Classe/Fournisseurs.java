@@ -6,7 +6,7 @@
 package projet.gestion.du.stocks.Classe;
 
 /**
- * Classe Fournisseur
+ * Classe utilisé pour un fournisseur
  * @author Luca GRUNENWALD
  */
 public class Fournisseurs {
@@ -21,11 +21,11 @@ public class Fournisseurs {
     
     /**
      * Constructeur de la classe fournisseurs
-     * @param id
-     * @param nomFournisseur
-     * @param nombreCommander
-     * @param nombreDisponible
-     * @param totalStocks 
+     * @param id Identifiant du fournisseur
+     * @param nomFournisseur Nom du fournisseur
+     * @param nombreCommander Nombre de commande lié au fournisseur
+     * @param nombreDisponible Nombre de vaccins disponible du fournisseur
+     * @param totalStocks Total de stocks de vaccin du fournisseur
      */
     public Fournisseurs(int id, String nomFournisseur, int nombreCommander, int nombreDisponible, int totalStocks) {
         this.id = id;
@@ -38,7 +38,7 @@ public class Fournisseurs {
     //Méthodes public
     /**
      * Récupère l'identifiant du fournisseur
-     * @return id
+     * @return int - L'identifiant
      */
     public int getId() {
         return id;
@@ -46,7 +46,7 @@ public class Fournisseurs {
 
     /**
      * Récupère le nom du fournisseur
-     * @return nomFournisseur
+     * @return String - Nom du fournisseur
      */
     public String getNomFournisseur() {
         return nomFournisseur;
@@ -54,7 +54,7 @@ public class Fournisseurs {
 
     /**
      * Récupère le nombre de commander passer chez le fournisseur
-     * @return nombreCommander
+     * @return int - Nombre de commande
      */
     public int getNombreCommander() {
         return nombreCommander;
@@ -62,7 +62,7 @@ public class Fournisseurs {
 
     /**
      * Récupère le nombre disponible de vaccin du fournisseur
-     * @return nombreDisponible
+     * @return int - Nombre de vaccin disponible
      */
     public int getNombreDisponible() {
         return nombreDisponible;
@@ -70,7 +70,7 @@ public class Fournisseurs {
 
     /**
      * Récupère le nombre total de stocks de vaccin du fournissuer
-     * @return totalStocks
+     * @return int - Total de stocks du vaccin
      */
     public int getTotalStocks() {
         return totalStocks;
@@ -78,7 +78,7 @@ public class Fournisseurs {
 
     /**
      * Modifie le nombre total de stocks du fournisseur
-     * @param totalStocks 
+     * @param totalStocks Total de stocks pour le fournisseur
      */
     public void setTotalStocks(int totalStocks) {
         this.totalStocks = totalStocks;

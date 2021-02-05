@@ -27,7 +27,7 @@ public class ConnectionDAO {
         
         /**
          * Constructeur de la classe
-         * @throws SQLException 
+         * @throws SQLException  Exception SQL
          */
 	public ConnectionDAO() throws SQLException
 	{
@@ -44,7 +44,7 @@ public class ConnectionDAO {
         /**
          * Méthodes permettant d'appeler une instance de la classe
          * @return ConnectionDAO
-         * @throws SQLException 
+         * @throws SQLException  Exception SQL
          */
         public static ConnectionDAO getInstance() throws SQLException {
             if(instance == null)
@@ -55,7 +55,7 @@ public class ConnectionDAO {
 
         /**
          * Méthode permettant de récupérer la connection
-         * @return 
+         * @return Connection
          */
         public static Connection getConnexion() {
             return connexion;

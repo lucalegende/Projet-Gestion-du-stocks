@@ -6,7 +6,7 @@
 package projet.gestion.du.stocks.Classe;
 
 /**
- * Classe Commandes
+ * Classe utilisé pour une commande
  * @author Luca GRUNENWALD
  */
 public class Commandes {
@@ -22,12 +22,12 @@ public class Commandes {
     
     /**
      * Constructeur de la classe commandes
-     * @param id
-     * @param client
-     * @param vaccin
-     * @param fournisseur
-     * @param nombreVaccinCommander
-     * @param CommandeValider 
+     * @param id Identifiant de la commande
+     * @param client Nom du client de la commande
+     * @param vaccin Type de vaccin de la commande
+     * @param fournisseur Nom du fournisseur de la commande
+     * @param nombreVaccinCommander Nombre de vaccin commandé
+     * @param CommandeValider Vérifie si la commande est valider ou non
      */
     public Commandes(int id, String client, String vaccin, String fournisseur, int nombreVaccinCommander, boolean CommandeValider) {
         this.id = id;
@@ -41,7 +41,7 @@ public class Commandes {
     //Méthodes public
     /**
      * Récupère l'identifiant de la commande
-     * @return id
+     * @return int - L'identifiant
      */
     public int getId() {
         return id;
@@ -49,7 +49,7 @@ public class Commandes {
     
     /**
      * Récupère le nom du client de la commande
-     * @return client
+     * @return String - Le nom du client
      */
     public String getClient() {
         return client;
@@ -57,7 +57,7 @@ public class Commandes {
 
     /**
      * Récupère le type de vaccin de la commande
-     * @return vaccin
+     * @return String - Le type de vaccin
      */
     public String getVaccin() {
         return vaccin;
@@ -65,7 +65,7 @@ public class Commandes {
 
     /**
      * Récupère le nom du fournisseur de la commande
-     * @return fournisseur
+     * @return String - Nom du fournisseur
      */
     public String getFournisseur() {
         return fournisseur;
@@ -73,15 +73,15 @@ public class Commandes {
 
     /**
      * Récupère le nombre de vaccin de la commande
-     * @return nombreVaccinCommander
+     * @return int - Le nombre de vaccin
      */
     public int getNombreVaccinCommander() {
         return nombreVaccinCommander;
     }
 
     /**
-     * 
-     * @return CommandeValider
+     * Vérifie si une commande est valider
+     * @return boolean - Commande valider ?
      */
     public boolean isCommandeValider() {
         return CommandeValider;

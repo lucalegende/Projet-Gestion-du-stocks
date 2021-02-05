@@ -25,7 +25,7 @@ public class VaccinsDAO {
     
     /**
      *  Méthodes pour récupérer la liste des vaccins dans la base de données
-     * @throws SQLException 
+     * @throws SQLException  Exception SQL
      */
     public static void ChargerListeVaccins() throws SQLException{
         //On initalise la liste des vaccins
@@ -59,10 +59,10 @@ public class VaccinsDAO {
     
     /**
      * Méthode permettant d'ajouter un vaccin
-     * @param TypeVaccin
-     * @param TotalStocks
-     * @return
-     * @throws SQLException 
+     * @param TypeVaccin Type du vaccin
+     * @param TotalStocks Total de stocks du vaccin
+     * @return boolean
+     * @throws SQLException Exception SQL
      */
     public static boolean AjouterUnVaccin(String TypeVaccin, int TotalStocks) throws SQLException{
         //On essaye de se connecter
@@ -82,10 +82,10 @@ public class VaccinsDAO {
     
     /**
      * Méthode permettant d'ajouter du stocks a un vaccin
-     * @param TypeVaccin
-     * @param Quantiter
-     * @return
-     * @throws SQLException 
+     * @param TypeVaccin Type du vaccin
+     * @param Quantiter Quantité demandé
+     * @return boolean
+     * @throws SQLException Exception SQL 
      */
     public static boolean AjouterDuStock(String TypeVaccin, int Quantiter) throws SQLException{
         //On incrémente la donnée et on la récupère dans une variable
@@ -112,10 +112,10 @@ public class VaccinsDAO {
     
     /**
      * Méthode permettant de mettre à jour la liste des vaccins
-     * @param TypeVaccin
-     * @param NomFournisseur
-     * @param Quantiter
-     * @throws SQLException 
+     * @param TypeVaccin Type du vaccin
+     * @param NomFournisseur Nom du fournisseur
+     * @param Quantiter Quantité demandé
+     * @throws SQLException Exception SQL
      */
     public static void MiseAJourListeVaccins(String TypeVaccin, String NomFournisseur, int Quantiter) throws SQLException{
         
@@ -138,7 +138,7 @@ public class VaccinsDAO {
 
     /**
      * Méthode permettant de récupérer la liste des vaccins
-     * @return 
+     * @return ArrayList - Liste des vaccins
      */
     public static ArrayList<Vaccins> getListeVaccins(){
         return new ArrayList<>(ListeVaccins);

@@ -27,7 +27,7 @@ public class CommandesDAO {
     
     /**
      * Méthodes pour récupérer la liste des commandes dans la base de données
-     * @throws SQLException 
+     * @throws SQLException Exception SQL
      */
     public static void ChargerListeCommandes() throws SQLException{         
         //On initalise la liste des commandes
@@ -56,12 +56,12 @@ public class CommandesDAO {
     
     /**
      * Méthode permettant d'ajouter une commande
-     * @param typeVaccin
-     * @param nomFournisseur
-     * @param client
-     * @param quantiter
+     * @param typeVaccin Type de vaccin
+     * @param nomFournisseur Nom du fournisseur
+     * @param client Nom du client
+     * @param quantiter Quantité demandé
      * @return boolean
-     * @throws SQLException 
+     * @throws SQLException Exception SQL
      */
     public static boolean AjouterUneCommande(String typeVaccin, String nomFournisseur, String client, int quantiter) throws SQLException{
         //On essaye de se connecter
@@ -105,9 +105,9 @@ public class CommandesDAO {
     
     /**
      * Méthode permettant la validation d'une commande 
-     * @param idCommandes
+     * @param idCommandes Identifiant de la commandes
      * @return boolean
-     * @throws SQLException 
+     * @throws SQLException  Exception SQL
      */
     public static boolean ValiderUneCommande(int idCommandes) throws SQLException{
         //On essaye de se connecter
@@ -127,9 +127,9 @@ public class CommandesDAO {
     
     /**
      * Méthode permettant l'annulation d'une commande
-     * @param idCommandes
+     * @param idCommandes Identifiant de la commandes
      * @return boolean
-     * @throws SQLException 
+     * @throws SQLException  Exception SQL
      */
     public static boolean AnnulerUneCommande(int idCommandes) throws SQLException{
         //On essaye de se connecter

@@ -27,7 +27,7 @@ public class stockFenetre extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
-     * @throws java.sql.SQLException
+     * @throws java.sql.SQLException Exception SQL
      */
     public stockFenetre() throws SQLException {
         initComponents();
@@ -383,6 +383,9 @@ public class stockFenetre extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Propriété privé
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
