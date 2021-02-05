@@ -13,15 +13,20 @@ import java.util.ArrayList;
 import projet.gestion.du.stocks.Classe.Vaccins;
 
 /**
- *
+ * Classe VaccinsDAO
  * @author Kalictong
  */
 public class VaccinsDAO {
     
-    //Propriété privée
+    /**
+     * Propriété privée
+     */
     private static ArrayList<Vaccins> ListeVaccins = new ArrayList<Vaccins>();
     
-    //Méthodes : Récupération des données de la base
+    /**
+     *  Méthodes pour récupérer la liste des vaccins dans la base de données
+     * @throws SQLException 
+     */
     public static void ChargerListeVaccins() throws SQLException{
         //On initalise la liste des vaccins
         ListeVaccins = new ArrayList<>();
@@ -52,7 +57,13 @@ public class VaccinsDAO {
         }
     }
     
-    //Méthodes : mise à jour de la base de donnée
+    /**
+     * Méthode permettant d'ajouter un vaccin
+     * @param TypeVaccin
+     * @param TotalStocks
+     * @return
+     * @throws SQLException 
+     */
     public static boolean AjouterUnVaccin(String TypeVaccin, int TotalStocks) throws SQLException{
         //On essaye de se connecter
         Connection connexion = ConnectionDAO.getInstance().getConnexion();
@@ -69,6 +80,13 @@ public class VaccinsDAO {
         return ps.executeUpdate() == 1;  
     }
     
+    /**
+     * Méthode permettant d'ajouter du stocks a un vaccin
+     * @param TypeVaccin
+     * @param Quantiter
+     * @return
+     * @throws SQLException 
+     */
     public static boolean AjouterDuStock(String TypeVaccin, int Quantiter) throws SQLException{
         //On incrémente la donnée et on la récupère dans une variable
         ListeVaccins.stream().filter(Listefournisseur -> (Listefournisseur.getTypeVaccin().equals(TypeVaccin))).forEachOrdered(Listefournisseur -> {
@@ -92,10 +110,13 @@ public class VaccinsDAO {
         return ps.executeUpdate() == 1; 
     }
     
-    /*public static void RetierStockVaccin(){
-        
-    }*/
-    
+    /**
+     * Méthode permettant de mettre à jour la liste des vaccins
+     * @param TypeVaccin
+     * @param NomFournisseur
+     * @param Quantiter
+     * @throws SQLException 
+     */
     public static void MiseAJourListeVaccins(String TypeVaccin, String NomFournisseur, int Quantiter) throws SQLException{
         
         Vaccins vaccin = ListeVaccins.stream().filter(x -> x.getTypeVaccin().equals(TypeVaccin)).findFirst().orElse(null);
@@ -115,9 +136,11 @@ public class VaccinsDAO {
         ChargerListeVaccins();
     }
 
-    //Méthodes général
+    /**
+     * Méthode permettant de récupérer la liste des vaccins
+     * @return 
+     */
     public static ArrayList<Vaccins> getListeVaccins(){
         return new ArrayList<>(ListeVaccins);
     }
-    
 }

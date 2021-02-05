@@ -135,6 +135,10 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Méthodes permettant d'ajouter une commande lors du click sur le boutton ok
+     * @param evt 
+     */
     private void AjoutCommande(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutCommande
         //Vérification label sont bien remplie et avec les bonnes données
         String oublie = ""; int label = 0;

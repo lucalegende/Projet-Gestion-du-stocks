@@ -5,22 +5,30 @@
  */
 package projet.gestion.du.stocks.Classe;
 
-import java.util.Date;
-
 /**
- *
- * @author Kalic
+ * Classe Commandes
+ * @author Luca GRUNENWALD
  */
 public class Commandes {
-    //Propriété de la classe Commandes
-    private int id;
-    private String client;
-    private String vaccin;
-    private String fournisseur;
-    private int nombreVaccinCommander;
-    private boolean CommandeValider;
+    /**
+     * Propriété de la classe Commandes
+     */
+    private final int id;
+    private final String client;
+    private final String vaccin;
+    private final String fournisseur;
+    private final int nombreVaccinCommander;
+    private final boolean CommandeValider;
     
-    //Constructeur
+    /**
+     * Constructeur de la classe commandes
+     * @param id
+     * @param client
+     * @param vaccin
+     * @param fournisseur
+     * @param nombreVaccinCommander
+     * @param CommandeValider 
+     */
     public Commandes(int id, String client, String vaccin, String fournisseur, int nombreVaccinCommander, boolean CommandeValider) {
         this.id = id;
         this.client = client;
@@ -30,52 +38,52 @@ public class Commandes {
         this.CommandeValider = CommandeValider;
     }
     
-    //Méthodes
+    //Méthodes public
+    /**
+     * Récupère l'identifiant de la commande
+     * @return id
+     */
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
     
+    /**
+     * Récupère le nom du client de la commande
+     * @return client
+     */
     public String getClient() {
         return client;
     }
 
-    public void setClient(String client) {
-        this.client = client;
-    }
-
+    /**
+     * Récupère le type de vaccin de la commande
+     * @return vaccin
+     */
     public String getVaccin() {
         return vaccin;
     }
 
-    public void setVaccin(String vaccin) {
-        this.vaccin = vaccin;
-    }
-
+    /**
+     * Récupère le nom du fournisseur de la commande
+     * @return fournisseur
+     */
     public String getFournisseur() {
         return fournisseur;
     }
 
-    public void setFournisseur(String fournisseur) {
-        this.fournisseur = fournisseur;
-    }
-
+    /**
+     * Récupère le nombre de vaccin de la commande
+     * @return nombreVaccinCommander
+     */
     public int getNombreVaccinCommander() {
         return nombreVaccinCommander;
     }
 
-    public void setNombreVaccinCommander(int nombreVaccinCommander) {
-        this.nombreVaccinCommander = nombreVaccinCommander;
-    }
-
+    /**
+     * 
+     * @return CommandeValider
+     */
     public boolean isCommandeValider() {
         return CommandeValider;
-    }
-
-    public void setCommandeValider(boolean CommandeValider) {
-        this.CommandeValider = CommandeValider;
     }
 }

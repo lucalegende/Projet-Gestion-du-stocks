@@ -10,13 +10,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Classe d'acc�s aux donn�es contenues dans la table article
+ * Classe pour la connection a la base de données
  * @version 1.1
- * @author Kalictong
+ * @author Luca GRUNENWALD
  */
 public class ConnectionDAO {
-    /**
-	 * Param�tres de connexion � la base de donn�es oracle
+        /**
+	 * Paramètres de connexion à la base de données mysql
 	 * URL, LOGIN et PASS sont des constantes
 	 */
 	final static String URL = "jdbc:mysql://localhost:3306/database";
@@ -25,10 +25,10 @@ public class ConnectionDAO {
         private static ConnectionDAO instance = null;
         private static Connection connexion;
         
-	/**
-	 * Constructeur de la classe
-	 * 
-	 */
+        /**
+         * Constructeur de la classe
+         * @throws SQLException 
+         */
 	public ConnectionDAO() throws SQLException
 	{
             // chargement du pilote de bases de données et connection a la base de donnée
@@ -41,6 +41,11 @@ public class ConnectionDAO {
             }
 	}
         
+        /**
+         * Méthodes permettant d'appeler une instance de la classe
+         * @return ConnectionDAO
+         * @throws SQLException 
+         */
         public static ConnectionDAO getInstance() throws SQLException {
             if(instance == null)
                 return new ConnectionDAO();
@@ -48,6 +53,10 @@ public class ConnectionDAO {
                 return instance;
         }
 
+        /**
+         * Méthode permettant de récupérer la connection
+         * @return 
+         */
         public static Connection getConnexion() {
             return connexion;
         }

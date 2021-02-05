@@ -129,6 +129,10 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Methode permettant l'ajout du stocks lors du click sur le boutton ok
+     * @param evt 
+     */
     private void AjoutStocks(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutStocks
         String oublie = ""; int label = 0;
         

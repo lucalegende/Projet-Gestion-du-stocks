@@ -6,18 +6,27 @@
 package projet.gestion.du.stocks.Classe;
 
 /**
- *
- * @author Kalic
+ * Classe Vaccins
+ * @author Luca GRUNENWALD
  */
 public class Vaccins {
-    //Propriété de la classe vaccins
-    private int id;
-    private String typeVaccin;
-    private int nombreCommander;
-    private int nombreDisponible;
+    /**
+     * Propriété de la classe vaccins
+     */
+    private final int id;
+    private final String typeVaccin;
+    private final int nombreCommander;
+    private final int nombreDisponible;
     private int totalStocks;
 
-    //Constructeur
+    /**
+     * Constructeur de la classe vaccins
+     * @param id
+     * @param typeVaccin
+     * @param nombreCommander
+     * @param nombreDisponible
+     * @param totalStocks 
+     */
     public Vaccins(int id, String typeVaccin, int nombreCommander, int nombreDisponible, int totalStocks) {
         this.id = id;
         this.typeVaccin = typeVaccin;
@@ -26,43 +35,51 @@ public class Vaccins {
         this.totalStocks = totalStocks;
     }
     
-    //Méthodes
+    //Méthodes public
+    /**
+     * Récupére l'identifiant du vaccins
+     * @return id 
+     */
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    /**
+     * Récupére le type de vaccin
+     * @return typeVaccin
+     */
     public String getTypeVaccin() {
         return typeVaccin;
     }
-
-    public void setTypeVaccin(String typeVaccin) {
-        this.typeVaccin = typeVaccin;
-    }
-
+    
+    /**
+     * Récupére le nombre de commande du vaccin
+     * @return nombreCommander
+     */
     public int getNombreCommander() {
         return nombreCommander;
     }
-
-    public void setNombreCommander(int nombreCommander) {
-        this.nombreCommander = nombreCommander;
-    }
-
+    
+    /**
+     * Récupére le nombre disponible du vaccin
+     * @return nombreDisponible
+     */
     public int getNombreDisponible() {
         return nombreDisponible;
     }
 
-    public void setNombreDisponible(int nombreDisponible) {
-        this.nombreDisponible = nombreDisponible;
-    }
-
+    /**
+     * Récupére le total des sotcks du vaccin
+     * @return totalStocks
+     */
     public int getTotalStocks() {
         return totalStocks;
     }
 
+    /**
+     * Modifie le total des stocks du vaccin
+     * @param totalStocks 
+     */
     public void setTotalStocks(int totalStocks) {
         this.totalStocks = totalStocks;
     }

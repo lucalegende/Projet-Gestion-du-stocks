@@ -13,15 +13,20 @@ import java.util.ArrayList;
 import projet.gestion.du.stocks.Classe.Fournisseurs;
 
 /**
- *
- * @author Kalictong
+ * Classe FournisseurDAO
+ * @author Luca GRUNENWALD
  */
 public class FournisseursDAO {
     
-    //Propriété privée
+    /**
+     * Propriété privée
+     */
     private static ArrayList<Fournisseurs> Listefournisseurs;
-    
-    //Méthodes : Récupération des données de la base
+   
+    /**
+     * Méthodes pour récupérer la liste des fournisseurs dans la base de données
+     * @throws SQLException 
+     */
     public static void ChargerListeFournisseurs() throws SQLException{
         //On initalise la liste des commandes
         Listefournisseurs = new ArrayList<>();
@@ -52,11 +57,13 @@ public class FournisseursDAO {
         }
     }
     
-    /*public static ArrayList<Fournisseurs> TousLesFournisseursDuVaccin(Vaccins vaccin){
-        return Listefournisseurs;
-    }*/
-    
-    //Méthodes : Mise à jour des données dans la base
+    /**
+     * Méthode permettant d'ajouter un fournisseur
+     * @param NomFournisseur
+     * @param TotalStocks
+     * @return boolean
+     * @throws SQLException 
+     */
     public static boolean AjouterUnFounisseur(String NomFournisseur, int TotalStocks) throws SQLException{
         //On essaye de se connecter
         Connection connexion = ConnectionDAO.getInstance().getConnexion();
@@ -73,10 +80,17 @@ public class FournisseursDAO {
         return ps.executeUpdate() == 1;  
     }
     
+    /**
+     * Méthode permettant d'ajouter du stocks au fournisseur
+     * @param NomFournisseurs
+     * @param Quantiter
+     * @return boolean
+     * @throws SQLException 
+     */
     public static boolean AjouterDuStocks(String NomFournisseurs, int Quantiter) throws SQLException{
 
         //On incrémente la donnée et on la récupère dans une variable
-        Listefournisseurs.stream().filter(Listefournisseur -> (Listefournisseur.getNomFournisseur().equals(NomFournisseurs))).forEachOrdered(Listefournisseur -> {
+        Listefournisseurs.stream().filter(Listefournisseur -> (Listefournisseur.getNomFournisseur().equals(NomFournisseurs))).forEachOrdered((Fournisseurs Listefournisseur) -> {
             Listefournisseur.setTotalStocks(Listefournisseur.getTotalStocks()+Quantiter);
         });
         
@@ -97,6 +111,12 @@ public class FournisseursDAO {
         return ps.executeUpdate() == 1; 
     }
     
+    /**
+     * Méthode permettant de mettre a jour la liste des fournisseurs
+     * @param NomFournisseur
+     * @param Quantiter
+     * @throws SQLException 
+     */
     public static void MiseAJourListeFournisseur(String NomFournisseur, int Quantiter) throws SQLException{
         Fournisseurs founisseur = Listefournisseurs.stream().filter(x -> x.getNomFournisseur().equals(NomFournisseur)).findFirst().orElse(null);
         
@@ -113,7 +133,10 @@ public class FournisseursDAO {
         ChargerListeFournisseurs();
     }
     
-    //Méthodes général
+    /**
+     * Méthode permettant de récupérer la liste des fournisseurs
+     * @return ArrayList
+     */
     public static ArrayList<Fournisseurs> getListeFounisseurs(){
         return new ArrayList<>(Listefournisseurs);
     }

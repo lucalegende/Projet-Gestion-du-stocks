@@ -215,6 +215,10 @@ public class stockFenetre extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Méthode qui annule une commande
+     * @param evt 
+     */
     private void AnnulerCommande(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerCommande
         Collection CommandeSelectionner = ((DefaultTableModel) jTableCommandes.getModel()).getDataVector().elementAt(jTableCommandes.getSelectedRow());
         int IdCommandes = (Integer) CommandeSelectionner.iterator().next();
@@ -233,6 +237,10 @@ public class stockFenetre extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AnnulerCommande
 
+    /**
+     * Méthode qui affiche la fentre pour l'ajout de stocks
+     * @param evt 
+     */
     @SuppressWarnings("empty-statement")
     private void AjoutStockFenetre(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutStockFenetre
         
@@ -248,6 +256,10 @@ public class stockFenetre extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AjoutStockFenetre
 
+    /**
+     * Méthode qui affiche la fentre pour l'ajout de commande
+     * @param evt 
+     */
     private void AjoutCommandeFenetre(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjoutCommandeFenetre
         if (VaccinsDAO.getListeVaccins().size() > 0) {
             JDialog jfrm2= new ajoutCommandeFenetre(this, rootPaneCheckingEnabled);
@@ -266,11 +278,19 @@ public class stockFenetre extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AjoutCommandeFenetre
 
+    /**
+     * Méthode qui permet de rendre utilisable les bouttona valider et annuler
+     * @param evt 
+     */
     private void jTableCommandesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCommandesMouseClicked
         jButtonValidate.setEnabled(true);
         jButtonAnnuler.setEnabled(true);  
     }//GEN-LAST:event_jTableCommandesMouseClicked
 
+    /**
+     * Méthode qui valide une commande
+     * @param evt 
+     */
     private void ValiderCommande(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderCommande
         Collection CommandeSelectionner = ((DefaultTableModel) jTableCommandes.getModel()).getDataVector().elementAt(jTableCommandes.getSelectedRow());
         int IdCommandes = (Integer) CommandeSelectionner.iterator().next();

@@ -15,15 +15,20 @@ import java.util.ArrayList;
 import projet.gestion.du.stocks.Classe.Commandes;
 
 /**
- *
- * @author Kalictong
+ * Classe CommandeDAO
+ * @author Luca GRUNENWALD
  */
 public class CommandesDAO {
     
-    //Propriété privée
+    /**
+     * Propriété privée
+     */
     private static ArrayList<Commandes> ListeCommandes;
     
-    //Méthodes : Récupération des données de la base
+    /**
+     * Méthodes pour récupérer la liste des commandes dans la base de données
+     * @throws SQLException 
+     */
     public static void ChargerListeCommandes() throws SQLException{         
         //On initalise la liste des commandes
         ListeCommandes = new ArrayList<>();
@@ -49,7 +54,15 @@ public class CommandesDAO {
                 ListeCommandes.add(new Commandes(rs.getInt("Id"), rs.getString("Client"), rs.getString("Type_Vaccin"), rs.getString("Nom_fournisseur"), rs.getInt("Nombre_Commander"), rs.getBoolean("Commande_Valider")));
     }
     
-    //Méthodes : Mise à jour des données dans la base
+    /**
+     * Méthode permettant d'ajouter une commande
+     * @param typeVaccin
+     * @param nomFournisseur
+     * @param client
+     * @param quantiter
+     * @return boolean
+     * @throws SQLException 
+     */
     public static boolean AjouterUneCommande(String typeVaccin, String nomFournisseur, String client, int quantiter) throws SQLException{
         //On essaye de se connecter
         Connection connexion = ConnectionDAO.getInstance().getConnexion();
@@ -90,6 +103,12 @@ public class CommandesDAO {
         return false;
     }
     
+    /**
+     * Méthode permettant la validation d'une commande 
+     * @param idCommandes
+     * @return boolean
+     * @throws SQLException 
+     */
     public static boolean ValiderUneCommande(int idCommandes) throws SQLException{
         //On essaye de se connecter
         Connection connexion = ConnectionDAO.getInstance().getConnexion();
@@ -106,6 +125,12 @@ public class CommandesDAO {
         return ps.executeUpdate() == 1;
     }
     
+    /**
+     * Méthode permettant l'annulation d'une commande
+     * @param idCommandes
+     * @return boolean
+     * @throws SQLException 
+     */
     public static boolean AnnulerUneCommande(int idCommandes) throws SQLException{
         //On essaye de se connecter
         Connection connexion = ConnectionDAO.getInstance().getConnexion();
@@ -134,7 +159,10 @@ public class CommandesDAO {
         return false;
     }
     
-    //Méthodes général
+    /**
+     * Méthode permettant de récupérer la liste des commandes
+     * @return ArrayList
+     */
     public static ArrayList<Commandes> getListeCommandes(){
         return new ArrayList<>(ListeCommandes);
     }
