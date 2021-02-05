@@ -249,15 +249,20 @@ public class stockFenetre extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        JDialog jfrm2= new ajoutCommandeFenetre(this, rootPaneCheckingEnabled);
-        jfrm2.setModal(true);
-        jfrm2.setVisible(true);
-        jfrm2.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        
-        try {
-            refreshTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
+        if (VaccinsDAO.getListeVaccins().size() > 0) {
+            JDialog jfrm2= new ajoutCommandeFenetre(this, rootPaneCheckingEnabled);
+            jfrm2.setModal(true);
+            jfrm2.setVisible(true);
+            jfrm2.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+            try {
+                refreshTable();
+            } catch (SQLException ex) {
+                Logger.getLogger(stockFenetre.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            //On affiche un texte si aucun vaccin n'existe et donc on ne peut pas commander
+            JOptionPane.showMessageDialog(null, "Vous ne pouvez pas commander car vous n'avez pas ajouté de vaccin.");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

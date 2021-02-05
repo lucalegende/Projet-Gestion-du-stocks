@@ -6,6 +6,7 @@
 package projet.gestion.du.stocks.design;
 
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import projet.gestion.du.stocks.dao.CommandesDAO;
 import projet.gestion.du.stocks.dao.FournisseursDAO;
@@ -135,23 +136,48 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            //Vérification label sont bien remplie et avec les bonnes données
+        //Vérification label sont bien remplie et avec les bonnes données
+        String oublie = ""; int label = 0;
+        
+        //Vérification label sont bien remplie et avec les bonnes données
+        if(TypeVaccins.getSelectedItem() == null || TypeVaccins.getSelectedItem().toString().isBlank()){
+            oublie += "Type de vaccin, ";
+            label++;
+        }
+        if(NomFournisseur.getSelectedItem() == null || NomFournisseur.getSelectedItem().toString().isBlank()) {
+            oublie += "Nom du fournisseur, ";
+            label++;
+        }
+        if (NomClient.getText().isBlank()){
+            oublie += "Nom du client, ";
+            label++;
+        }
+        if (Quantité.getText().isBlank() || !Pattern.matches("[0-9]+", Quantité.getText())) {
+            oublie += "quantité ";
+            label++;
+        }
+        
+        if (!oublie.isEmpty() && label == 1) {
+            JOptionPane.showMessageDialog(null, oublie+" est incorrect");
+        } else if (!oublie.isEmpty() && label > 1){
+            JOptionPane.showMessageDialog(null, oublie+" sont incorrect");
+        } else {
+            try {
+                //Ajoute la quantité
+                String typeVaccin = TypeVaccins.getSelectedItem().toString();
+                String nomFournisseur = NomFournisseur.getSelectedItem().toString();
+                String nomClient = NomClient.getText();
+                int quantité = Integer.valueOf(Quantité.getText());
 
-            //Ajoute la quantité
-            String typeVaccin = TypeVaccins.getSelectedItem().toString();
-            String nomFournisseur = NomFournisseur.getSelectedItem().toString();
-            String nomClient = NomClient.getText();
-            int quantité = Integer.valueOf(Quantité.getText());
+                CommandesDAO.AjouterUneCommande(typeVaccin, nomFournisseur, nomClient, quantité);
 
-            CommandesDAO.AjouterUneCommande(typeVaccin, nomFournisseur, nomClient, quantité);
+                JOptionPane.showMessageDialog(null, "Ajout de la commande réussi.");
 
-            JOptionPane.showMessageDialog(null, "Ajout dde la commande réussi.");
-            
-            this.dispose();
+                this.dispose();
 
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ajout de la commande échouer, veuillez réessayer.");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Ajout de la commande échouer, veuillez réessayer.");
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

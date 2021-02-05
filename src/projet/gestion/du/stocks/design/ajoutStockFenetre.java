@@ -6,6 +6,7 @@
 package projet.gestion.du.stocks.design;
 
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import projet.gestion.du.stocks.dao.FournisseursDAO;
 import projet.gestion.du.stocks.dao.VaccinsDAO;
@@ -18,6 +19,8 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
 
     /**
      * Creates new form ajouteStockFenetre
+     * @param parent
+     * @param modal
      */
     public ajoutStockFenetre(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -127,22 +130,43 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            //Vérification label sont bien remplie et avec les bonnes données
+        String oublie = ""; int label = 0;
+        
+        //Vérification label sont bien remplie et avec les bonnes données
+        if(TypeVaccins.getSelectedItem() == null || TypeVaccins.getSelectedItem().toString().isBlank()){
+            oublie += "Type de vaccin, ";
+            label++;
+        }
+        if(NomFournisseur.getSelectedItem() == null || NomFournisseur.getSelectedItem().toString().isBlank()) {
+            oublie += "Nom du fournisseur, ";
+            label++;
+        }
 
-            //Ajoute la quantité
-            String typeVaccin = TypeVaccins.getSelectedItem().toString();
-            String nomFournisseur = NomFournisseur.getSelectedItem().toString();
-            int quantité = Integer.valueOf(Quantité.getText());
+        if (Quantité.getText().isBlank() || !Pattern.matches("[0-9]+", Quantité.getText())) {
+            oublie += "quantité ";
+            label++;
+        }
+        
+        if (!oublie.isEmpty() && label == 1) {
+            JOptionPane.showMessageDialog(null, oublie+" est incorrect");
+        } else if (!oublie.isEmpty() && label > 1){
+            JOptionPane.showMessageDialog(null, oublie+" sont incorrect");
+        } else {
+            try {
+                //Ajoute la quantité
+                String typeVaccin = TypeVaccins.getSelectedItem().toString();
+                String nomFournisseur = NomFournisseur.getSelectedItem().toString();
+                int quantité = Integer.valueOf(Quantité.getText());
 
-            VaccinsDAO.MiseAJourListeVaccins(typeVaccin, nomFournisseur, quantité);
+                VaccinsDAO.MiseAJourListeVaccins(typeVaccin, nomFournisseur, quantité);
 
-            JOptionPane.showMessageDialog(null, "Ajout du stocks réussi.");
-            
-            this.dispose();
+                JOptionPane.showMessageDialog(null, "Ajout du stocks réussi.");
 
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ajout du stocks échouer, veuillez réessayer.");
+                this.dispose();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Ajout du stocks échouer, veuillez réessayer.");
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
