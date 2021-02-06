@@ -35,7 +35,7 @@ public class CommandesDAO {
         ListeCommandes = new ArrayList<>();
 
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "SELECT C.Id, C.Client, F.Nom_fournisseur, V.Type_Vaccin, C.Nombre_Commander, A.Commande_Valider\n"
@@ -68,7 +68,7 @@ public class CommandesDAO {
      */
     public static boolean AjouterUneCommande(String typeVaccin, String nomFournisseur, String client, int quantiter) throws SQLException {
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "INSERT INTO COMMANDES (Client, Nombre_Commander) VALUES (?, ?)";
@@ -115,7 +115,7 @@ public class CommandesDAO {
      */
     public static boolean ValiderUneCommande(int idCommandes) throws SQLException {
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "UPDATE ACHAT SET Commande_Valider = ? WHERE Id_Commandes = ?";
@@ -138,7 +138,7 @@ public class CommandesDAO {
      */
     public static boolean AnnulerUneCommande(int idCommandes) throws SQLException {
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "DELETE FROM ACHAT WHERE Id_Commandes = ?";

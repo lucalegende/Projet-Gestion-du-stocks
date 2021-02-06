@@ -150,8 +150,9 @@ public class ajoutStockFenetre extends javax.swing.JDialog {
             oublie += "Nom du fournisseur, ";
             label++;
         }
-
-        if (Quantiter.getText().isBlank() || !Pattern.matches("[0-9]+", Quantiter.getText())) {
+        int  test = Integer.valueOf(Quantiter.getText());
+        
+        if (Quantiter.getText().isBlank() || !Pattern.matches("[0-9]+", Quantiter.getText()) || Integer.valueOf(Quantiter.getText()) < 1) {
             oublie += "quantité ";
             label++;
         }

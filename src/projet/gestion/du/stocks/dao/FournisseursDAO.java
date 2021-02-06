@@ -35,7 +35,7 @@ public class FournisseursDAO {
         Listefournisseurs = new ArrayList<>();
 
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "SELECT f.Id, f.Nom_fournisseur, SUM(s.Total_Stocks) AS Total_Stocks\n"
@@ -72,7 +72,7 @@ public class FournisseursDAO {
      */
     public static int AjouterUnFounisseur(String NomFournisseur) throws SQLException, Exception {
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "INSERT INTO FOURNISSEURS (Nom_fournisseur) VALUES (?)";
@@ -106,7 +106,7 @@ public class FournisseursDAO {
         int idVaccin = VaccinsDAO.getListeVaccins().stream().filter(x -> x.getTypeVaccin().equals(typeVaccin)).findFirst().orElse(null).getId();
 
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "SELECT f.Id, f.Nom_fournisseur, SUM(s.Total_Stocks) AS Total_Stocks\n"

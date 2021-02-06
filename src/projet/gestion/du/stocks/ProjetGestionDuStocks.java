@@ -6,6 +6,8 @@
 package projet.gestion.du.stocks;
 
 import java.sql.SQLException;
+import javax.swing.*;
+import projet.gestion.du.stocks.dao.ConnectionDAO;
 import projet.gestion.du.stocks.design.stockFenetre;
 
 /**
@@ -22,7 +24,19 @@ public class ProjetGestionDuStocks {
      * @throws java.sql.SQLException Exception SQL
      */
     public static void main(String[] args) throws SQLException {
-        stockFenetre stockF = new stockFenetre();
-        stockF.setVisible(true);
+        try {
+            //Création d'une instance de connexion
+            ConnectionDAO.getInstance();
+            
+            //Affichage de la fenêtre principal
+            stockFenetre stockF = new stockFenetre();
+            stockF.setVisible(true);
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null,"Impossible de ce connection a la base de données.\n"
+            + "Vérifier que vous avez bien installer :\n"
+            + " - Wamp avec mysql\n"
+            + " - La base de données\n"
+            + "Sinon veillez suivre le manuel d'installation", "Vérification", JOptionPane.OK_CANCEL_OPTION);
+        }
     }
 }

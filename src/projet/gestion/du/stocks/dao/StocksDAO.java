@@ -31,7 +31,7 @@ public class StocksDAO {
      */
     public static boolean AjouterDuStock(int idVaccin, int idFournisseur, int Quantiter) throws SQLException {
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "INSERT INTO STOCKS (Id_Fournisseur, Id_Vaccin, Total_Stocks) VALUES (?,?,?)";
@@ -57,7 +57,7 @@ public class StocksDAO {
     public static boolean MiseAJourDuStock(int idVaccin, int idFournisseur, int Quantiter) throws SQLException {
         if (StocksExisteBDD(idVaccin, idFournisseur)) {
             //On essaye de se connecter
-            Connection connexion = ConnectionDAO.getInstance().getConnexion();
+            Connection connexion = ConnectionDAO.getConnexion();
 
             //Requete SQL pour la liste des fournisseurs
             String sql = "UPDATE STOCKS SET Total_Stocks = ?\n"
@@ -87,7 +87,7 @@ public class StocksDAO {
         stocksInitial = -1;
 
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "SELECT * FROM STOCKS\n"

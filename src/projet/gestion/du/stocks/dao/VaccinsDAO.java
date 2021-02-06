@@ -36,7 +36,7 @@ public class VaccinsDAO {
         ListeVaccins = new ArrayList<>();
 
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "SELECT v.Id, v.Type_Vaccin, SUM(s.Total_Stocks) AS Total_Stocks\n"
@@ -73,7 +73,7 @@ public class VaccinsDAO {
      */
     public static int AjouterUnVaccin(String TypeVaccin) throws SQLException, Exception {
         //On essaye de se connecter
-        Connection connexion = ConnectionDAO.getInstance().getConnexion();
+        Connection connexion = ConnectionDAO.getConnexion();
 
         //Requete SQL pour la liste des fournisseurs
         String sql = "INSERT INTO VACCINS (Type_Vaccin) VALUES (?)";
