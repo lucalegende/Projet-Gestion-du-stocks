@@ -37,6 +37,8 @@ public class ProjetGestionDuStocks {
             + " - Wamp avec mysql\n"
             + " - La base de données\n"
             + "Sinon veillez suivre le manuel d'installation", "Vérification", JOptionPane.OK_CANCEL_OPTION);
+        } catch (ClassNotFoundException e2) {
+            JOptionPane.showConfirmDialog(null,"Impossible de charger le pilote de BDD, ne pas oublier d'importer le fichier .jar dans le projet","Vérification", JOptionPane.OK_CANCEL_OPTION);
         }
     }
 }

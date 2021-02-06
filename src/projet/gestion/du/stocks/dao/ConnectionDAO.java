@@ -24,23 +24,20 @@ public class ConnectionDAO {
     final static String URL = "jdbc:mysql://localhost:3306/database";
     final static String LOGIN = "root";
     final static String PASS = "";
-    private static ConnectionDAO instance = null;
+    private static final ConnectionDAO instance = null;
     private static Connection connexion;
 
     /**
      * Constructeur de la classe
      *
      * @throws SQLException Exception SQL
+     * @throws ClassNotFoundException Exception Non trouver
      */
-    public ConnectionDAO() throws SQLException {
+    public ConnectionDAO() throws SQLException, ClassNotFoundException {
         // chargement du pilote de bases de données et connection a la base de donnée
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            //Connection a la base de données
-            connexion = DriverManager.getConnection(URL, LOGIN, PASS);
-        } catch (ClassNotFoundException e2) {
-            System.err.println("Impossible de charger le pilote de BDD, ne pas oublier d'importer le fichier .jar dans le projet");
-        }
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Connection a la base de données
+        connexion = DriverManager.getConnection(URL, LOGIN, PASS);
     }
 
     /**
@@ -48,8 +45,9 @@ public class ConnectionDAO {
      *
      * @return ConnectionDAO
      * @throws SQLException Exception SQL
+     * @throws ClassNotFoundException Exception Non trouver
      */
-    public static ConnectionDAO getInstance() throws SQLException {
+    public static ConnectionDAO getInstance() throws SQLException, ClassNotFoundException {
         if (instance == null) {
             return new ConnectionDAO();
         } else {
