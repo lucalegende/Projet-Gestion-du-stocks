@@ -162,7 +162,12 @@ public class ajoutCommandeFenetre extends javax.swing.JDialog {
             oublie += "Nom du client, ";
             label++;
         }
-        if (Quantiter.getText().isBlank() || !Pattern.matches("[0-9]+", Quantiter.getText()) || Integer.valueOf(Quantiter.getText()) < 1) {
+        try {
+            if (Quantiter.getText().isBlank() || !Pattern.matches("[0-9]+", Quantiter.getText()) || Integer.valueOf(Quantiter.getText()) < 1) {
+                oublie += "quantité ";
+                label++;
+            }
+        } catch (NumberFormatException e) {
             oublie += "quantité ";
             label++;
         }
